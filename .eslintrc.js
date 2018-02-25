@@ -11,9 +11,10 @@ module.exports = {
     "import/parser": "babel-eslint",
     "import/resolver": {
       "webpack": {
-        config: path.join(__dirname, '/build/webpack.dev.js')
+        "config": path.join(__dirname, '/build/webpack.dev.js')
       }
-    }
+    },
+    "experimentalDecorators": true
   },
   rules: {
     "import/no-commonjs": ["error", "always"],
@@ -33,6 +34,7 @@ module.exports = {
 
     "jsx-a11y/no-noninteractive-element-to-interactive-role": 0,
 
+    "eslint/experimentalDecorators": 0,
     "no-nested-ternary": 0,
     "function-paren-newline": 0,
     "func-names": 0,
