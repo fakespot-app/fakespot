@@ -46,6 +46,7 @@ module.exports = {
     "quote-props": ["error", "as-needed"],
     "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": 1 }],
     "no-plusplus": 0,
-    "no-mixed-operators": ["error", {"allowSamePrecedence": true}]
+    "no-mixed-operators": ["error", {"allowSamePrecedence": true}],
+    "no-new": 0,
   }
 }

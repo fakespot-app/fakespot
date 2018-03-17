@@ -42,14 +42,29 @@ export default class LifeLinesList extends React.PureComponent {
         );
       }
 
+      if (i === 1) {
+        const foundLinks = val.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+
+        const linksList = foundLinks.map((link, j) => (
+          <a
+            key={`lifeLine-${i}-${j}`}
+            href={link}
+            target="_blank"
+          >{link}
+          </a>
+        ));
+
+        return (
+          <div key={`lifeLine-${i}`} className={`${styles.used} ${styles.btn}`}>
+            {linksList}
+          </div>
+        );
+      }
+
       return (
-        <a
-          key={`lifeLine-${i}`}
-          href={(i === 1) ? val.text : null}
-          target={(i === 1) ? "_blank" : null}
-          className={`${styles.used} ${styles.btn}`}
-        >{val}
-        </a>
+        <div key={`lifeLine-${i}`} className={`${styles.used} ${styles.btn}`}>
+          {val}
+        </div>
       );
     });
 
