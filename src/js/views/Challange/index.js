@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { submitAnswers, fetchQuestion } from "../../actions/questions/";
+import { requestPermission } from "../../utils/notifications";
 
 import NewsPaper from "../../components/NewsPaper";
 import InputsList from "../../components/InputsList/";
@@ -51,7 +52,7 @@ export default class Challange extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchQuestion());
 
-    Notification.requestPermission()
+    requestPermission()
       .then((result) => {
         if (result === "granted") {
           this.sendNotification(10);
