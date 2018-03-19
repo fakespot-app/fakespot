@@ -187,7 +187,7 @@ export default class Challange extends React.Component {
         </NewsPaper>
 
         <div className={`${styles.questionHeader} leading-normal`}>
-          To prawdziwa informacja czy fake? <br />
+          Czy ta informacja jest prawdziwa czy fałszywa? <br />
           Znajdź odpowiedź, wynajdując w Internecie wiarygodne źródło
         </div>
 

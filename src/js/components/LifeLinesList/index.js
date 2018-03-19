@@ -46,16 +46,21 @@ export default class LifeLinesList extends React.PureComponent {
         const foundLinks = val.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 
         const linksList = foundLinks.map((link, j) => (
-          <a
-            key={`lifeLine-${i}-${j}`}
-            href={link}
-            target="_blank"
-          >{link}
-          </a>
+          <p>
+            <a
+              key={`lifeLine-${i}-${j}`}
+              href={link}
+              target="_blank"
+            >{link}
+            </a>
+          </p>
         ));
 
         return (
           <div key={`lifeLine-${i}`} className={`${styles.used} ${styles.btn}`}>
+            <p>
+              <strong>Sugerowane {linksList.length === 1 ? "źródło" : "źródła"}</strong>
+            </p>
             {linksList}
           </div>
         );
@@ -63,7 +68,10 @@ export default class LifeLinesList extends React.PureComponent {
 
       return (
         <div key={`lifeLine-${i}`} className={`${styles.used} ${styles.btn}`}>
-          {val}
+          <p>
+            <strong>Sugerowane hasła wyszukiwania</strong>
+          </p>
+          <p>{val}</p>
         </div>
       );
     });
