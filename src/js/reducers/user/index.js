@@ -6,7 +6,7 @@ const initialState = {
     badgesCollected: [],
     points: 0,
     avatar: "/avatar.gif",
-    questionsCompleted: 0,
+    questionsCompleted: 4,
   },
 };
 
@@ -21,7 +21,7 @@ export default function reducer(state = initialState, action) {
       return newState;
     }
 
-    case "USER/COMPLETE_QUESTION": {
+    case "USER/INCREASE_QUESTIONS_COMPLETED": {
       newState.data.questionsCompleted++;
 
       return newState;

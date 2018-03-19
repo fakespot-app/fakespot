@@ -5,7 +5,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case "SET_STATE": {
+    case "STATE/SET_STATE": {
       return { state: action.payload };
     }
 

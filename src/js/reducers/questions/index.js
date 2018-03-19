@@ -1,7 +1,6 @@
 const initialState = {
   fetched: false,
   fetching: false,
-  lastQuestion: 0,
   data: [],
 };
 
@@ -14,7 +13,7 @@ export default function reducer(state = initialState, action) {
   newState.data[newState.data.length - 1] = deepDataCopy;
 
   switch (action.type) {
-    case "QUESTION/USER_SUBMIT": {
+    case "QUESTION/SAVE_ANSWER": {
       newState.data[newState.data.length - 1].userAnswer = action.payload;
       newState.data[newState.data.length - 1].wasAnswered = true;
 
@@ -23,7 +22,6 @@ export default function reducer(state = initialState, action) {
 
     case "QUESTION_FETCHED": {
       newState.fetched = true;
-      newState.lastQuestion++;
 
       newState.data.push(
         {

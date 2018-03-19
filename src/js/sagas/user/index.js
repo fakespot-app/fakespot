@@ -1,11 +1,13 @@
+import { put, takeLatest, all, select } from "redux-saga/effects";
 import { requestPermission } from "../../utils/notifications";
 
-export const completeQuestion = () => (dispatch, getState) => {
-  dispatch({ type: "USER/COMPLETE_QUESTION" });
-  const { user } = getState();
+function* completeQuestion() {
+  yield put({ type: "USER/INCREASE_QUESTIONS_COMPLETED" });
+
+  const user = yield select(state => state.user);
 
   if (user.data.questionsCompleted >= 5 && user.data.badgesCollected.indexOf(1) < 0) {
-    dispatch({ type: "USER/GIVE_BADGE", payload: 1 });
+    yield put({ type: "USER/GIVE_BADGE", payload: 1 });
 
     requestPermission()
       .then((result) => {
@@ -17,4 +19,13 @@ export const completeQuestion = () => (dispatch, getState) => {
         }
       });
   }
-};
+}
+
+function* userSaga() {
+  yield all([
+    takeLatest("USER/COMPLETE_QUESTION", completeQuestion),
+  ]);
+}
+
+
+export default userSaga;

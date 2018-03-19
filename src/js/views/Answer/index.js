@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { setState } from "../../actions/questions/";
-
 import ChallangeCard from "../../components/ChallangeCard";
 import ChallangeCardFrame from "../../components/ChallangeCardFrame";
 
@@ -25,7 +23,7 @@ export default class Answer extends React.Component {
   }
 
   playAgain = () => {
-    this.props.dispatch(setState("playing"));
+    this.props.dispatch({ type: "STATE/SET_STATE", payload: "playing" });
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Badge from "./Badge";
 import styles from "./styles.sass";
 
 export default class Badges extends React.Component {
@@ -16,32 +17,16 @@ export default class Badges extends React.Component {
   }
 
   render() {
+    console.log(this.props.badgesCollected);
+
     const badges = this.props.badges.map(badge =>
       (
-        <div
+        <Badge
           key={`badge-${badge.name}`}
-          className={`${styles.badge}`}
-        >
-          <img
-            src={badge.img}
-            alt={`Odblokowane osiągnięcie – ${badge.name}`}
-            title={badge.name}
-          />
-          { ((this.props.badgesCollected.indexOf(badge.id)) < 0) ? (
-            <img
-              src="/badges/lock.png"
-              alt={`Zablokowane osiągnięcie – ${badge.name}`}
-              title={badge.name}
-            />
-          ) : (this.initialBadges.indexOf(badge.id) < 0) ? (
-            <img
-              src="/badges/lock.gif"
-              alt={`Zablokowane osiągnięcie – ${badge.name}`}
-              title={badge.name}
-            />
-          ) : null
-          }
-        </div>
+          badge={badge}
+          badgesCollected={this.props.badgesCollected}
+          initialBadges={this.initialBadges}
+        />
       ),
     );
     return (

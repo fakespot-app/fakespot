@@ -11,7 +11,7 @@ export default class Splash extends React.Component {
   }
 
   onClick = () => {
-    this.props.dispatch({ type: "SET_STATE", payload: "playing" });
+    this.props.dispatch({ type: "STATE/SET_STATE", payload: "playing" });
   }
 
   render() {

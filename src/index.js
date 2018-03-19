@@ -1,4 +1,6 @@
 // import runtime from "offline-plugin/runtime";
+
+import "babel-polyfill";
 import "./js/app";
 
 // if (process.env.NODE_ENV === "production") {

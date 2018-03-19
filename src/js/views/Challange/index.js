@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 
 import HNM from "./HintNotificationsManager";
 
-import { submitAnswers, fetchQuestion } from "../../actions/questions/";
-
 import ChallangeCard from "../../components/ChallangeCard";
 
 import NewsPaper from "../../components/Challange/NewsPaper/";
@@ -47,7 +45,7 @@ export default class Challange extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchQuestion());
+    this.props.dispatch({ type: "QUESTION/FETCH_REQUESTED" });
 
     this.hintNotificationsManager.startHints();
   }
@@ -72,16 +70,20 @@ export default class Challange extends React.Component {
   submitAnswer = (e) => {
     e.preventDefault();
 
-    const { dispatch } = this.props;
-
     if (this.state.optionSelected === null || this.state.source === "") {
       return;
     }
 
-    dispatch(submitAnswers({
-      isTrue: this.state.optionSelected,
-      source: this.state.source,
-    }, this.props.challange));
+    this.props.dispatch({
+      type: "QUESTION/SUBMIT",
+      payload: {
+        data: {
+          isTrue: this.state.optionSelected,
+          source: this.state.source,
+        },
+        challange: this.props.challange,
+      },
+    });
   }
 
   unlockLifeLine = () => {

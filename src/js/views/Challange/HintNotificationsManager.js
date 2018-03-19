@@ -60,4 +60,9 @@ export default class HintNotificationsManager {
       }, 1000 * (LIFE_LINE_2_TIME - LIFE_LINE_1_TIME));
     }, 1000 * LIFE_LINE_1_TIME);
   }
+
+  clearTimeouts() {
+    clearTimeout(this.hintTimer);
+    clearTimeout(this.lifeLineTimer);
+  }
 }
