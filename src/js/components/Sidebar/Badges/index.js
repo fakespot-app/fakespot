@@ -1,8 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./styles.sass";
 
 export default class Badges extends React.Component {
+  static propTypes = {
+    badgesCollected: PropTypes.array.isRequired,
+    badges: PropTypes.array.isRequired,
+  }
+
   constructor(props) {
     super();
 
@@ -18,19 +24,19 @@ export default class Badges extends React.Component {
         >
           <img
             src={badge.img}
-            alt={badge.name}
+            alt={`Odblokowane osiągnięcie – ${badge.name}`}
             title={badge.name}
           />
           { ((this.props.badgesCollected.indexOf(badge.id)) < 0) ? (
             <img
               src="/badges/lock.png"
-              alt={badge.name}
+              alt={`Zablokowane osiągnięcie – ${badge.name}`}
               title={badge.name}
             />
           ) : (this.initialBadges.indexOf(badge.id) < 0) ? (
             <img
               src="/badges/lock.gif"
-              alt={badge.name}
+              alt={`Zablokowane osiągnięcie – ${badge.name}`}
               title={badge.name}
             />
           ) : null
@@ -41,11 +47,6 @@ export default class Badges extends React.Component {
     return (
       <main className={`${styles.badges} flex items-start`}>
         {badges}
-
-        <img
-          style={{ display: "none" }}
-          src="/badges/lock.gif"
-        />
       </main>
     );
   }

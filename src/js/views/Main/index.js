@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 
 import Challange from "../Challange";
 import Splash from "../Splash";
-import AnswerSuccess from "../AnswerSuccess";
-import AnswerFail from "../AnswerFail";
+import Answer from "../Answer";
 
 import Sidebar from "../../components/Sidebar/";
 import Container from "../../components/Container";
@@ -20,6 +19,8 @@ const mapStateToProps = ({ state, badges, user }) => ({
 export default class Main extends React.Component {
   static propTypes = {
     state: PropTypes.string.isRequired,
+    badges: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired,
   }
 
   render() {
@@ -36,12 +37,8 @@ export default class Main extends React.Component {
         mainComponent = <Challange />;
         break;
       }
-      case "answerSuccess": {
-        mainComponent = <AnswerSuccess />;
-        break;
-      }
-      case "answerFail": {
-        mainComponent = <AnswerFail />;
+      case "answer": {
+        mainComponent = <Answer />;
         break;
       }
 

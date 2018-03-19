@@ -10,7 +10,7 @@ export const completeQuestion = () => (dispatch, getState) => {
     requestPermission()
       .then((result) => {
         if (result === "granted") {
-          const not = new Notification("Odblokowałeś osiągnięcie!", {
+          new Notification("Odblokowałeś osiągnięcie!", {
             body: "Rozwiąż 5 zadań",
             icon: "/badge2.png",
           });

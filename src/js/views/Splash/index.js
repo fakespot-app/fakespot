@@ -1,10 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import styles from "./styles.sass";
+import SplashScreenButton from "../../components/SplashScreenButton/";
 
 @connect()
 export default class Splash extends React.Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+  }
+
   onClick = () => {
     this.props.dispatch({ type: "SET_STATE", payload: "playing" });
   }
@@ -12,7 +17,7 @@ export default class Splash extends React.Component {
   render() {
     return (
       <div className="flex items-center justify-center h-full">
-        <button className={styles.button} onClick={this.onClick}>ZACZYNAMY!</button>
+        <SplashScreenButton onClick={this.onClick} />
       </div>
     );
   }

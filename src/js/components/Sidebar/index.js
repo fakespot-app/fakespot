@@ -1,10 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import styles from "./styles.sass";
 
-import Badges from "../Badges/";
-import Avatar from "../Avatar/";
+import Badges from "./Badges/";
+import Avatar from "./Avatar/";
 
 export default class Sidebar extends React.Component {
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    badges: PropTypes.array.isRequired,
+  }
+
   render() {
     return (
       <aside className={`${styles.sidebar} flex flex-col items-center`}>

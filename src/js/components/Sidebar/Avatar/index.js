@@ -1,8 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./styles.sass";
 
 export default class Component extends React.Component {
+  static propTypes = {
+    avatar: PropTypes.string.isRequired,
+  }
+
   constructor() {
     super();
     this.state = {
