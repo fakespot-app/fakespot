@@ -22,7 +22,8 @@
     ],
     "scripts": [
       "https://code.createjs.com/createjs-2015.11.26.min.js",
-      "/animate/lock.js"
+      "/animate/lock.js",
+      "/animate/fox.js"
     ],
     "lang": "pl-PL",
     "appMountId": "app"

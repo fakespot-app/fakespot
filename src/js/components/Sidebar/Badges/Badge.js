@@ -21,12 +21,12 @@ const Badge = ({ badge, badgesCollected, initialBadges }) => {
     <div
       key={`badge-${badge.name}`}
       className={`${styles.badge}`}
+      title={badge.name}
     >
       <img
         key="unlocked"
         src={badge.img}
         alt={`Odblokowane osiągnięcie – ${badge.name}`}
-        title={badge.name}
       />
 
       { !wasInitiallyOpen ?
