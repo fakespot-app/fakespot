@@ -6,7 +6,7 @@ const initialState = {
     badgesCollected: [],
     points: 0,
     avatar: "/avatar.gif",
-    questionsCompleted: 4,
+    questionsCompleted: 0,
   },
 };
 

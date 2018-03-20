@@ -20,6 +20,10 @@
       "https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:300,400,700,800",
       "https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
     ],
+    "scripts": [
+      "https://code.createjs.com/createjs-2015.11.26.min.js",
+      "/animate/lock.js"
+    ],
     "lang": "pl-PL",
     "appMountId": "app"
   },
