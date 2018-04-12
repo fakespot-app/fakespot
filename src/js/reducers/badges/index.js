@@ -1,3 +1,10 @@
+import badge1 from "assets/images/badges/1.png";
+import badge2 from "assets/images/badges/2.png";
+import badge3 from "assets/images/badges/3.png";
+import badge4 from "assets/images/badges/4.png";
+import badge5 from "assets/images/badges/5.png";
+import badge6 from "assets/images/badges/6.png";
+
 const initialState = {
   fetched: false,
   fetching: false,
@@ -5,37 +12,37 @@ const initialState = {
     {
       id: 0,
       name: "Osiągnięcie #1",
-      img: "/badges/1.png",
+      img: badge1,
     },
     {
       id: 1,
       name: "Rozwiąż 5 zadań",
-      img: "/badges/2.png",
+      img: badge1,
     },
     {
       id: 2,
       name: "Osiągnięcie #3",
-      img: "/badges/3.png",
+      img: badge2,
     },
     {
       id: 3,
       name: "Osiągnięcie #4",
-      img: "/badges/3.png",
+      img: badge3,
     },
     {
       id: 4,
       name: "Osiągnięcie #5",
-      img: "/badges/4.png",
+      img: badge4,
     },
     {
       id: 5,
       name: "Osiągnięcie #6",
-      img: "/badges/5.png",
+      img: badge5,
     },
     {
       id: 6,
       name: "Osiągnięcie #7",
-      img: "/badges/6.png",
+      img: badge6,
     },
   ],
 };

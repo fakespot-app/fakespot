@@ -8,13 +8,11 @@ module.exports = {
     "es6": true
   },
   "settings": {
-    "import/parser": "babel-eslint",
     "import/resolver": {
       "webpack": {
-        "config": path.join(__dirname, '/build/webpack.dev.js')
+        config: "./build/resolves.js",
       }
-    },
-    "experimentalDecorators": true
+    }
   },
   rules: {
     "import/no-commonjs": ["error", "always"],

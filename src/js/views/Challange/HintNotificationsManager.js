@@ -1,5 +1,5 @@
-import { requestPermission } from "../../utils/notifications";
-import { LIFE_LINE_1_TIME, LIFE_LINE_2_TIME, HINT_TIME } from "../../constants/notifications";
+import { requestPermission } from "utils/notifications";
+import { LIFE_LINE_1_TIME, LIFE_LINE_2_TIME, HINT_TIME } from "constants/notifications";
 
 export default class HintNotificationsManager {
   constructor(notifications, unlockLifeLine) {

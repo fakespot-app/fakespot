@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import SplashScreenButton from "../../components/SplashScreenButton/";
+import SplashScreenButton from "components/SplashScreenButton/";
 
-@connect()
-export default class Splash extends React.Component {
+class Splash extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   }
@@ -22,3 +21,5 @@ export default class Splash extends React.Component {
     );
   }
 }
+
+export default connect()(Splash);

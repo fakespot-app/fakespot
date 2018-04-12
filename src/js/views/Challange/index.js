@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 
 import HNM from "./HintNotificationsManager";
 
-import ChallangeCard from "../../components/ChallangeCard";
+import ChallangeCard from "components/ChallangeCard";
 
-import NewsPaper from "../../components/Challange/NewsPaper/";
-import SourceInput from "../../components/Challange/SourceInput/";
-import SubmitButton from "../../components/Challange/SubmitButton";
-import LifeLinesList from "../../components/Challange/LifeLinesList/";
-import ExceriseHeading from "../../components/Challange/ExceriseHeading/";
-import TrueFalseButtons from "../../components/Challange/TrueFalseButtons/";
+import NewsPaper from "components/Challange/NewsPaper/";
+import SourceInput from "components/Challange/SourceInput/";
+import SubmitButton from "components/Challange/SubmitButton";
+import LifeLinesList from "components/Challange/LifeLinesList/";
+import ExceriseHeading from "components/Challange/ExceriseHeading/";
+import TrueFalseButtons from "components/Challange/TrueFalseButtons/";
 
 const mapStateToProps = ({ questions, notifications }) => ({
   challange: questions.data[questions.data.length - 1],
@@ -19,8 +19,7 @@ const mapStateToProps = ({ questions, notifications }) => ({
   notifications: notifications.data,
 });
 
-@connect(mapStateToProps)
-export default class Challange extends React.Component {
+class Challange extends React.Component {
   static propTypes = {
     notifications: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -137,3 +136,5 @@ export default class Challange extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(Challange);

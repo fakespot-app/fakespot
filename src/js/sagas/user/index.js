@@ -1,5 +1,5 @@
 import { put, takeLatest, all, select } from "redux-saga/effects";
-import { requestPermission } from "../../utils/notifications";
+import { requestPermission } from "utils/notifications";
 
 function* completeQuestion() {
   yield put({ type: "USER/INCREASE_QUESTIONS_COMPLETED" });

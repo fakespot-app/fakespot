@@ -2,12 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import Sidebar from "components/Sidebar/";
+import Container from "components/Container";
+
 import Challange from "../Challange";
 import Splash from "../Splash";
 import Answer from "../Answer";
 
-import Sidebar from "../../components/Sidebar/";
-import Container from "../../components/Container";
 
 const mapStateToProps = ({ state, badges, user }) => ({
   state: state.state,
@@ -15,8 +16,7 @@ const mapStateToProps = ({ state, badges, user }) => ({
   user: user.data,
 });
 
-@connect(mapStateToProps)
-export default class Main extends React.Component {
+class Main extends React.Component {
   static propTypes = {
     state: PropTypes.string.isRequired,
     badges: PropTypes.array.isRequired,
@@ -57,3 +57,5 @@ export default class Main extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(Main);

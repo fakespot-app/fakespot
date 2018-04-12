@@ -2,21 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import ChallangeCard from "../../components/ChallangeCard";
-import ChallangeCardFrame from "../../components/ChallangeCardFrame";
+import ChallangeCard from "components/ChallangeCard";
+import ChallangeCardFrame from "components/ChallangeCardFrame";
 
-import Charts from "../../components/Answer/Charts/";
-import Header from "../../components/Answer/Header/";
-import BestSource from "../../components/Answer/BestSource/";
-import PlayAgainButton from "../../components/Answer/PlayAgainButton/";
-import QuestionComment from "../../components/Answer/QuestionComment/";
+import Charts from "components/Answer/Charts/";
+import Header from "components/Answer/Header/";
+import BestSource from "components/Answer/BestSource/";
+import PlayAgainButton from "components/Answer/PlayAgainButton/";
+import QuestionComment from "components/Answer/QuestionComment/";
 
 const mapStateToProps = ({ questions }) => ({
   challange: questions.data[questions.data.length - 1],
 });
 
-@connect(mapStateToProps)
-export default class Answer extends React.Component {
+class Answer extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     challange: PropTypes.object.isRequired,
@@ -65,3 +64,5 @@ export default class Answer extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(Answer);

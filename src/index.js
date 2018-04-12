@@ -1,17 +1,6 @@
-// import runtime from "offline-plugin/runtime";
-
 import "babel-polyfill";
-import "./js/app";
 
-// if (process.env.NODE_ENV === "production") {
-//   runtime.install({
-//     onUpdateReady() {
-//       runtime.applyUpdate();
-//     },
-//     onUpdated() {
-//       window.location.reload();
-//     },
-//   });
-// }
+import "./sass/tailwind.sass";
+import "./js/app";
 
 console.info(`%cVersion: ${process.env.VERSION}`, "color: #00F; font-weight: bold");

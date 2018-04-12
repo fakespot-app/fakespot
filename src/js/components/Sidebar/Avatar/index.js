@@ -4,6 +4,9 @@ import AnimateCC from "react-adobe-animate";
 
 import styles from "./styles.sass";
 
+import foxGif from "assets/images/fox.gif";
+import foxMp3 from "assets/sounds/fox.mp3";
+
 export default class Component extends React.Component {
   constructor() {
     super();
@@ -23,15 +26,14 @@ export default class Component extends React.Component {
       <div className={styles.avatar + (this.state.easteregg ? ` ${styles.easteregg}` : "")} onDoubleClick={this.changeImg}>
         <AnimateCC
           animationName="lishtml5"
-          composition="C1475B64B160904BB90B34246A5FF54B"
           style={{ display: !this.state.easteregg ? "block" : "none" }}
         />
 
         { this.state.easteregg ? [
-          <img src="/fox.gif" alt="avatar" key="avatar-ee-img" />,
+          <img src={foxGif} alt="avatar" key="avatar-ee-img" />,
           <audio
             key="avatar-ee-audio"
-            src="/fox.mp3"
+            src={foxMp3}
             autoPlay
             onEnded={this.changeImg}
           >

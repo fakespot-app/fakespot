@@ -1,54 +1,53 @@
-\:global
-  body
-    min-height: 100vh
-    margin: 0
-    background: url("/bg.png")
-    background-size: cover
-    font-family: "Open Sans", sans-serif
+body
+  min-height: 100vh
+  margin: 0
+  background: url("assets/images/bg.png")
+  background-size: cover
+  font-family: "Open Sans", sans-serif
 
-  input[type="text"], input[type="url"], textarea
-    display: block
-    width: 100%
-    padding: 1rem
-    transform: scale(1)
-    transition: box-shadow .2s ease-in-out, transform .2s ease-in-out, background .2s ease-in-out
-    border: 0
-    border-radius: 2px
-    outline: 0
-    font-family: "Open Sans", sans-serif
-    font-size: .75em
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1)
-    box-sizing: border-box
-    appearance: none
+input[type="text"], input[type="url"], textarea
+  display: block
+  width: 100%
+  padding: 1rem
+  transform: scale(1)
+  transition: box-shadow .2s ease-in-out, transform .2s ease-in-out, background .2s ease-in-out
+  border: 0
+  border-radius: 2px
+  outline: 0
+  font-family: "Open Sans", sans-serif
+  font-size: .75em
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1)
+  box-sizing: border-box
+  appearance: none
 
-    &:focus
-      transform: scale(1.01)
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.15)
+  &:focus
+    transform: scale(1.01)
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15)
 
-  button
-    padding: 10px 20px
-    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out
-    border: 0
-    border-radius: 4px
-    background: $button-background
-    color: $white
-    font-size: 1.2rem
-    box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
-    cursor: pointer
+button
+  padding: 10px 20px
+  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out
+  border: 0
+  border-radius: 4px
+  background: $button-background
+  color: $white
+  font-size: 1.2rem
+  box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
+  cursor: pointer
 
-    &:not([disabled])
-      &:active, &:focus
-        outline: none
+  &:not([disabled])
+    &:active, &:focus
+      outline: none
 
-      &:hover, &:focus
-        transform: scale(1.05)
-        box-shadow: 0 0 .3em rgba(0, 0, 0, 0.5)
+    &:hover, &:focus
+      transform: scale(1.05)
+      box-shadow: 0 0 .3em rgba(0, 0, 0, 0.5)
 
-      &:active
-        transform: scale(1)
-        box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
+    &:active
+      transform: scale(1)
+      box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
 
-    &.flat
-      border-radius: 0
-      background: none
-      box-shadow: none
+  &.flat
+    border-radius: 0
+    background: none
+    box-shadow: none

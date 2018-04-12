@@ -33,7 +33,6 @@ const Badge = ({ badge, badgesCollected, initialBadges }) => {
         (
           <AnimateCC
             animationName="lock1"
-            composition="842516E249BD4E919481E0E5D20ACD2C"
             paused={isLocked}
             style={{ position: "absolute" }}
           />
