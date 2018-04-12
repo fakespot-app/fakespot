@@ -4,13 +4,12 @@ import PropTypes from "prop-types";
 import styles from "./styles.sass";
 
 const InputLine = ({
-  value, onSourceInput,
+  onSourceInput,
 }) => (
   <div className={styles.inputLine}>
     <input
       type="url"
       required
-      // value={value.source}
       onInput={onSourceInput}
       onChange={onSourceInput}
       placeholder="Wklej źródło..."
@@ -19,7 +18,6 @@ const InputLine = ({
 );
 
 InputLine.propTypes = {
-  // value: PropTypes.object.isRequired,
   onSourceInput: PropTypes.func.isRequired,
 };
 

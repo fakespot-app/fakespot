@@ -2,10 +2,10 @@ import React from "react";
 
 import AnimateCC from "react-adobe-animate";
 
-import styles from "./styles.sass";
-
 import foxGif from "assets/images/fox.gif";
 import foxMp3 from "assets/sounds/fox.mp3";
+
+import styles from "./styles.sass";
 
 export default class Component extends React.Component {
   constructor() {

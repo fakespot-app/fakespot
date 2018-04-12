@@ -1,8 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./styles.sass";
 
 export default class LifeLinesList extends React.PureComponent {
+  static propTypes = {
+    lifeLines: PropTypes.array.isRequired,
+    used: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired,
+    unlocked: PropTypes.number.isRequired,
+  }
+
   constructor() {
     super();
     this.state = {
@@ -43,7 +51,7 @@ export default class LifeLinesList extends React.PureComponent {
       }
 
       if (i === 1) {
-        const foundLinks = val.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+        const foundLinks = val.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g);
 
         const linksList = foundLinks.map((link, j) => (
           <p>
