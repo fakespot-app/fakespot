@@ -1,7 +1,9 @@
 import { put, takeLatest, takeEvery, all, select, call } from "redux-saga/effects";
-import { requestPermission } from "utils/notifications";
-import { userFetched, userFetchFailed, userIncreaseQuestionsCompleted, userGiveBadge } from "actions/user";
+
 import { COMPLETE_QUESTION, FETCH } from "actions/user/types";
+import { userFetched, userFetchFailed, userIncreaseQuestionsCompleted, userGiveBadge } from "actions/user";
+
+import { requestPermission } from "utils/notifications";
 
 async function apiFetchUser() {
   const response = await fetch("/api/users/me").then(res => res.json());
