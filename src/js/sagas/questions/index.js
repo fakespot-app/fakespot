@@ -1,5 +1,11 @@
 import { put, takeLatest, all, call } from "redux-saga/effects";
 
+import { FETCH, SUBMIT } from "actions/questions/types";
+import { questionsFetched, questionsFetchFailed, questionsSaveAnswer } from "actions/questions";
+
+import { stateSetState } from "actions/state";
+import { userCompleteQuestion, userAddPoints } from "actions/user";
+
 const userToken = String(Math.floor(Math.random() * 10000000));
 
 async function apiFetchQuestion() {
@@ -11,29 +17,29 @@ function* fetchQuestion() {
   try {
     const response = yield call(apiFetchQuestion);
 
-    yield put({ type: "QUESTION_FETCHED", payload: response });
+    yield put(questionsFetched(response));
   } catch (e) {
-    yield put({ type: "QUESTION_FETCH_FAILED", message: e.message });
+    yield put(questionsFetchFailed(e));
   }
 }
 
 function* submitAnswers({ payload }) {
   const { data, challange } = payload;
 
-  yield put({ type: "USER/COMPLETE_QUESTION" });
-  yield put({ type: "QUESTION/SAVE_ANSWER", payload: data });
+  yield put(userCompleteQuestion());
+  yield put(questionsSaveAnswer(data));
 
   if (data.isTrue === challange.isTrue) {
-    yield put({ type: "USER/ADD_POINTS", payload: 100 });
+    yield put(userAddPoints(100));
   }
 
-  yield put({ type: "STATE/SET_STATE", payload: "answer" });
+  yield put(stateSetState("answer"));
 }
 
 function* questionsSaga() {
   yield all([
-    takeLatest("QUESTION/FETCH_REQUESTED", fetchQuestion),
-    takeLatest("QUESTION/SUBMIT", submitAnswers),
+    takeLatest(FETCH, fetchQuestion),
+    takeLatest(SUBMIT, submitAnswers),
   ]);
 }
 

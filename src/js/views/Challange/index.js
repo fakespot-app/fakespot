@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import toJS from "utils/toJS";
 
-import HNM from "./HintNotificationsManager";
+import { questionsFetch, questionsSubmit } from "actions/questions";
 
 import ChallangeCard from "components/ChallangeCard";
-
 import NewsPaper from "components/Challange/NewsPaper/";
 import SourceInput from "components/Challange/SourceInput/";
 import SubmitButton from "components/Challange/SubmitButton";
@@ -13,10 +13,12 @@ import LifeLinesList from "components/Challange/LifeLinesList/";
 import ExceriseHeading from "components/Challange/ExceriseHeading/";
 import TrueFalseButtons from "components/Challange/TrueFalseButtons/";
 
+import HNM from "./HintNotificationsManager";
+
 const mapStateToProps = ({ questions, notifications }) => ({
-  challange: questions.data[questions.data.length - 1],
-  fetched: questions.fetched,
-  notifications: notifications.data,
+  challange: questions.get("data").last(),
+  fetched: questions.get("fetched"),
+  notifications: notifications.get("data"),
 });
 
 class Challange extends React.Component {
@@ -44,7 +46,7 @@ class Challange extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch({ type: "QUESTION/FETCH_REQUESTED" });
+    this.props.dispatch(questionsFetch());
 
     this.hintNotificationsManager.startHints();
   }
@@ -68,21 +70,20 @@ class Challange extends React.Component {
 
   submitAnswer = (e) => {
     e.preventDefault();
+    const { optionSelected, source } = this.state;
 
-    if (this.state.optionSelected === null || this.state.source === "") {
+    if (optionSelected === null || source === "") {
       return;
     }
 
-    this.props.dispatch({
-      type: "QUESTION/SUBMIT",
-      payload: {
-        data: {
-          isTrue: this.state.optionSelected,
-          source: this.state.source,
-        },
-        challange: this.props.challange,
-      },
-    });
+    const data = {
+      isTrue: optionSelected,
+      source,
+    };
+
+    const { challange } = this.props;
+
+    this.props.dispatch(questionsSubmit(data, challange));
   }
 
   unlockLifeLine = () => {
@@ -137,4 +138,4 @@ class Challange extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Challange);
+export default connect(mapStateToProps)(toJS(Challange));

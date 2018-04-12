@@ -1,12 +1,15 @@
-const initialState = {
-  // state: "playing",
+import { Map } from "immutable";
+import { SET_STATE } from "actions/state/types";
+
+const initialState = Map({
   state: "splash",
-};
+});
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case "STATE/SET_STATE": {
-      return { state: action.payload };
+    case SET_STATE: {
+      return state
+        .set("state", action.payload);
     }
 
     // no default

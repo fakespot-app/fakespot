@@ -1,36 +1,33 @@
-const initialState = {
+import { Map, fromJS } from "immutable";
+import { FETCHED, ADD_POINTS, INCREASE_QUESTIONS_COMPLETED, GIVE_BADGE } from "actions/user/types";
+
+const initialState = Map({
   fetched: false,
   fetching: false,
-  data: {
-    username: "Andrzej",
-    badgesCollected: [0],
-    points: 0,
-    avatar: "/avatar.gif",
-    questionsCompleted: 0,
-  },
-};
+  data: Map(),
+});
 
 export default function reducer(state = initialState, action) {
-  const newState = Object.assign({}, state, {
-    data: { ...state.data },
-  });
-
   switch (action.type) {
-    case "USER/ADD_POINTS": {
-      newState.data.points += action.payload;
-      return newState;
+    case FETCHED: {
+      return state
+        .set("fetched", true)
+        .set("data", fromJS(action.payload));
     }
 
-    case "USER/INCREASE_QUESTIONS_COMPLETED": {
-      newState.data.questionsCompleted++;
-
-      return newState;
+    case ADD_POINTS: {
+      return state
+        .updateIn(["data", "points"], points => points + action.payload);
     }
 
-    case "USER/GIVE_BADGE": {
-      newState.data.badgesCollected.push(action.payload);
+    case INCREASE_QUESTIONS_COMPLETED: {
+      return state
+        .updateIn(["data", "questionsCompleted"], points => points + 1);
+    }
 
-      return newState;
+    case GIVE_BADGE: {
+      return state
+        .updateIn(["data", "badgesCollected"], badgesCollected => badgesCollected.push(action.payload));
     }
     // no default
   }

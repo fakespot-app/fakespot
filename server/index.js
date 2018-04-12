@@ -70,6 +70,18 @@ server.get("/api/question/:userToken", async (req, res) => {
   res.jsonp(question);
 });
 
+server.get("/api/users/me", async (req, res) => {
+  res.jsonp({
+    username: "Andrzej",
+    badgesCollected: [
+      0,
+    ],
+    points: 0,
+    avatar: "/avatar.gif",
+    questionsCompleted: 0,
+  });
+});
+
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use("/api", (req, res, next) => {
@@ -80,7 +92,6 @@ server.use("/api", (req, res, next) => {
   next();
 });
 
-// Use default router
 server.use("/api", router);
 
 server.use(express.static("dist"));

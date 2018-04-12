@@ -1,29 +1,46 @@
-import { put, takeLatest, all, select } from "redux-saga/effects";
+import { put, takeLatest, takeEvery, all, select, call } from "redux-saga/effects";
 import { requestPermission } from "utils/notifications";
+import { userFetched, userFetchFailed, userIncreaseQuestionsCompleted, userGiveBadge } from "actions/user";
+import { COMPLETE_QUESTION, FETCH } from "actions/user/types";
+
+async function apiFetchUser() {
+  const response = await fetch("/api/users/me").then(res => res.json());
+  return response;
+}
 
 function* completeQuestion() {
-  yield put({ type: "USER/INCREASE_QUESTIONS_COMPLETED" });
+  yield put(userIncreaseQuestionsCompleted());
 
-  const user = yield select(state => state.user);
+  const data = yield select(state => state.user.get("data"));
 
-  if (user.data.questionsCompleted >= 5 && user.data.badgesCollected.indexOf(1) < 0) {
-    yield put({ type: "USER/GIVE_BADGE", payload: 1 });
+  if (data.get("questionsCompleted") >= 5 && data.get("badgesCollected").toArray().indexOf(1) < 0) {
+    yield put(userGiveBadge(1));
 
     requestPermission()
       .then((result) => {
         if (result === "granted") {
           new Notification("Odblokowałeś osiągnięcie!", {
             body: "Rozwiąż 5 zadań",
-            icon: "/badge2.png",
+            icon: "/badges/2.png",
           });
         }
       });
   }
 }
 
+function* fetchUser() {
+  try {
+    const response = yield call(apiFetchUser);
+    yield put(userFetched(response));
+  } catch (e) {
+    yield put(userFetchFailed(e));
+  }
+}
+
 function* userSaga() {
   yield all([
-    takeLatest("USER/COMPLETE_QUESTION", completeQuestion),
+    takeEvery(COMPLETE_QUESTION, completeQuestion),
+    takeLatest(FETCH, fetchUser),
   ]);
 }
 

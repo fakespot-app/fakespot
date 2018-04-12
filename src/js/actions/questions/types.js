@@ -1,0 +1,5 @@
+export const FETCH = "QUESTION/FETCH";
+export const SUBMIT = "QUESTION/SUBMIT";
+export const FETCHED = "QUESTION/FETCHED";
+export const FETCH_FAIL = "QUESTION/FETCH_FAILED";
+export const SAVE_ANSWER = "QUESTION/SAVE_ANSWER";

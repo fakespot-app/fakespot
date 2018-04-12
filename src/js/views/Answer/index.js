@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import toJS from "utils/toJS";
+
+import { stateSetState } from "actions/state";
+
 import ChallangeCard from "components/ChallangeCard";
 import ChallangeCardFrame from "components/ChallangeCardFrame";
 
@@ -12,7 +16,7 @@ import PlayAgainButton from "components/Answer/PlayAgainButton/";
 import QuestionComment from "components/Answer/QuestionComment/";
 
 const mapStateToProps = ({ questions }) => ({
-  challange: questions.data[questions.data.length - 1],
+  challange: questions.get("data").last(),
 });
 
 class Answer extends React.Component {
@@ -22,7 +26,7 @@ class Answer extends React.Component {
   }
 
   playAgain = () => {
-    this.props.dispatch({ type: "STATE/SET_STATE", payload: "playing" });
+    this.props.dispatch(stateSetState("playing"));
   }
 
   render() {
@@ -65,4 +69,4 @@ class Answer extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Answer);
+export default connect(mapStateToProps)(toJS(Answer));

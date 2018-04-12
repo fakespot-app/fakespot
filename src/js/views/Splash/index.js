@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import { stateSetState } from "actions/state";
+
 import SplashScreenButton from "components/SplashScreenButton/";
 
 class Splash extends React.Component {
@@ -10,7 +12,7 @@ class Splash extends React.Component {
   }
 
   onClick = () => {
-    this.props.dispatch({ type: "STATE/SET_STATE", payload: "playing" });
+    this.props.dispatch(stateSetState("playing"));
   }
 
   render() {
