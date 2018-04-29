@@ -8,7 +8,7 @@ jobs:
     branches:
       only:
         - master
-        - /rc-.*/
+        - ci
 
     docker:
       # specify the version you desire here
