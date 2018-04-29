@@ -1,0 +1,56 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - master
+
+    docker:
+      - image: circleci/node:carbon
+
+    working_directory: ~/repo
+
+    steps:
+        - checkout
+
+        - setup_remote_docker:
+            docker_layer_caching: true
+
+        - restore_cache:
+            keys:
+                - v1-dependencies-{{ checksum "package.json" }}
+                - v1-dependencies-
+
+        - run: yarn install
+
+        - save_cache:
+            paths:
+                - node_modules
+            key: v1-dependencies-{{ checksum "package.json" }}
+        
+        - run: 
+            name: "Run tests"
+            command: yarn run test:build
+
+        - run: 
+            name: "Build docker image"
+            command: |
+                TAG=latest
+                docker build -t fakespot/fakespot.edu.pl:$TAG .
+
+        - run:
+            name: "Push image to docker hub"
+            command: |
+                TAG=latest
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker push fakespot/fakespot.edu.pl:$TAG
+
+        - run:
+            name: "Deploy image to Server"
+            command: |
+                chmod +x ./deploy.sh
+                ./deploy.sh
