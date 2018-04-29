@@ -31,7 +31,6 @@ module.exports = {
     vendor:
       [
         "react",
-        "react-dom",
         ...!production ?
           [
             "webpack/hot/only-dev-server",
@@ -47,14 +46,16 @@ module.exports = {
   },
 
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
-        commons: {
+        vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "all",
-        },
-      },
+          name: 'vendors',
+          enforce: true,
+          chunks: 'all'
+        }
+      }
     },
   },
 
@@ -143,6 +144,8 @@ module.exports = {
         new FriendlyErrorsPlugin(),
       ],
 
-    ...monitor ? [new BundleAnalyzerPlugin()] : [],
+    ...monitor ? [new BundleAnalyzerPlugin({
+      generateStatsFile: false,
+    })] : [],
   ],
 };

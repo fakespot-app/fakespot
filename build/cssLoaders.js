@@ -16,6 +16,7 @@ module.exports = (production, cssType, ExtractSASS) => {
     options: {
       ...((cssType === "sass") ? {
         indentedSyntax: cssType === "sass",
+        outputStyle: "expanded",
         data: "@import \"src/sass/variables\"",
       } : {}),
 
