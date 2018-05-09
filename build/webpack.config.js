@@ -28,35 +28,18 @@ module.exports = {
 
   entry: {
     app: "./src/index.js",
-    vendor:
-      [
-        "react",
-        ...!production ?
-          [
-            "webpack/hot/only-dev-server",
-            "webpack-dev-server/client?http://localhost:8080",
-          ] :
-          [],
+
+    ...(!production ? {
+      vendor: [
+        "webpack/hot/only-dev-server",
+        "webpack-dev-server/client?http://localhost:8080",
       ],
+    } : {}),
   },
 
   output: {
     path: resolve("dist"),
-    filename: "[name].[hash].js",
-  },
-
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          enforce: true,
-          chunks: 'all'
-        }
-      }
-    },
+    filename: "[name].[chunkhash].js",
   },
 
   performance: {
@@ -75,6 +58,12 @@ module.exports = {
         "/api": "http://localhost:3000",
       },
     },
+
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
 
   devtool: production ? "#none" : "#cheap-module-eval-source-map",
 
@@ -133,7 +122,21 @@ module.exports = {
 
     ...production ?
       [
-        new FaviconsWebpackPlugin(resolve("assets/favicon.png")),
+        new FaviconsWebpackPlugin({
+          logo: resolve("assets/favicon.png"),
+          icons: {
+            android: true,
+            appleIcon: true,
+            appleStartup: false,
+            coast: false,
+            favicons: true,
+            firefox: false,
+            opengraph: false,
+            twitter: false,
+            yandex: false,
+            windows: false,
+          },
+        }),
         ExtractSASS,
         new CopyWebpackPlugin([
           { context: "./public", from: "**/*", to: "./" },
