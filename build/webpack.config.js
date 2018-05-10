@@ -118,6 +118,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: resolve("src/pug/index.pug"),
+      inject: false,
+      title: "FakeSpot",
     }),
 
     ...production ?
