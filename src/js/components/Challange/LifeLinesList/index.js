@@ -44,7 +44,7 @@ export default class LifeLinesList extends React.PureComponent {
             onClick={disabled ? onClick(i) : () => {}}
             title={disabled ? "Zanim użyjesz koła ratunkowego, spróbuj odpowiedzieć sam" : ""}
             target={(i === 1) ? "_blank" : null}
-            className={styles.btn}
+            className={`${styles.btn} btn`}
           >Podpowiedź
           </button>
         );

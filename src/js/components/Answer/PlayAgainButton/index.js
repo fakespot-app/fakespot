@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.sass";
 
 const PlayAgainButton = ({ onClick }) => (
-  <button className={`flat self-end ${styles.nextButton}`} onClick={onClick}>Gram dalej &gt;</button>
+  <button className={`btn flat self-end ${styles.nextButton}`} onClick={onClick}>Gram dalej &gt;</button>
 );
 
 PlayAgainButton.propTypes = {

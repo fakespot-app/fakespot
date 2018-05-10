@@ -7,19 +7,17 @@ const TrueFalseButtons = ({ onSubmitTrue, onSubmitFalse, selected }) => (
     <div className={styles.buttonContainer}>
       <label
         className={`${styles.true} ${(selected === true) ? styles.checked : ""}`}
-        onClick={onSubmitTrue}
         type="button"
       >
-        <input type="radio" name="asd" value="true" required />
+        <input type="radio" name="asd" value="true" required onChange={onSubmitTrue} />
         <span>Prawda</span>
       </label>
     </div>
     <div className={styles.buttonContainer}>
       <label
         className={`${styles.false} ${(selected === false) ? styles.checked : ""}`}
-        onClick={onSubmitFalse}
       >
-        <input type="radio" name="asd" value="false" required />
+        <input type="radio" name="asd" value="false" required onClick={onSubmitFalse} />
         <span>Fałsz</span>
       </label>
     </div>

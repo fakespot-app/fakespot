@@ -25,18 +25,14 @@
     img
       width: 100%
 
+
+$percent-step: 100% / length($disco-colors)
 @keyframes disco
-  0%, 19.99%
-    background: #2196F3
+  @for $i from 1 to length($disco-colors) + 1
+    $end-percentage: $i * $percent-step - 0.01%
+    @if $i == length($disco-colors)
+      $end-percentage: $i * $percent-step
 
-  20%, 39.99%
-    background: #F44336
 
-  40%, 59.99%
-    background: #673AB7
-
-  60%, 79.99%
-    background: #4CAF50
-
-  80%, 100%
-    background: #E91E63
+    #{($i - 1) * $percent-step}, #{$end-percentage}
+      background: nth($disco-colors, $i)

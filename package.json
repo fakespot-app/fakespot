@@ -9,7 +9,7 @@
     "analize": "rimraf dist && MONITOR=true npm run build",
     "test": "jest --watchAll --notify",
     "test:build": "jest --silent",
-    "lint": "eslint src/*",
+    "lint": "sass-lint -c .sass-lint.yml 'src/**/*.s+(a|c)ss' -v -q && eslint src/*",
     "server": "node ./server/index.js"
   },
   "jest": {

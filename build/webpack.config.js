@@ -39,7 +39,7 @@ module.exports = {
 
   output: {
     path: resolve("dist"),
-    filename: "[name].[chunkhash].js",
+    filename: production ? "[name].[chunkhash].js" : "[name].[hash].js",
   },
 
   performance: {
@@ -59,11 +59,13 @@ module.exports = {
       },
     },
 
-  optimization: {
-    splitChunks: {
-      chunks: "all",
+  ...(production ? {
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+      },
     },
-  },
+  } : {}),
 
   devtool: production ? "#none" : "#cheap-module-eval-source-map",
 

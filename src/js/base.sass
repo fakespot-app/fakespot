@@ -16,38 +16,39 @@ input[type="text"], input[type="url"], textarea
   outline: 0
   font-family: "Open Sans", sans-serif
   font-size: .75em
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1)
+  box-shadow: $input-shadow
   box-sizing: border-box
   appearance: none
 
   &:focus
     transform: scale(1.01)
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15)
+    box-shadow: $input-shadow-focus
 
-button
-  padding: 10px 20px
-  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out
-  border: 0
-  border-radius: 4px
-  background: $button-background
-  color: $white
-  font-size: 1.2rem
-  box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
-  cursor: pointer
+\:global
+  .btn
+    padding: 10px 20px
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out
+    border: 0
+    border-radius: 4px
+    background: $button-background
+    color: $white
+    font-size: 1.2rem
+    box-shadow: $button-shadow
+    cursor: pointer
 
-  &:not([disabled])
-    &:active, &:focus
-      outline: none
+    &:not([disabled])
+      &:active, &:focus
+        outline: none
 
-    &:hover, &:focus
-      transform: scale(1.05)
-      box-shadow: 0 0 .3em rgba(0, 0, 0, 0.5)
+      &:hover, &:focus
+        transform: scale(1.05)
+        box-shadow: $button-shadow-hover
 
-    &:active
-      transform: scale(1)
-      box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
+      &:active
+        transform: scale(1)
+        box-shadow: $button-shadow-active
 
-  &.flat
-    border-radius: 0
-    background: none
-    box-shadow: none
+    &.flat
+      border-radius: 0
+      background: none
+      box-shadow: none
