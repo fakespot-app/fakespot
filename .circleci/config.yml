@@ -8,7 +8,7 @@ jobs:
     branches:
       only:
         - master
-        - refactor
+        - dev
 
     docker:
       - image: circleci/node:carbon
