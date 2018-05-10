@@ -1,3 +1,21 @@
 .button
+  padding: 10px 20px
+  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out
+  border: 0
+  border-radius: 4px
   background: $splash-button-background
+  color: $white
   font-size: 8rem
+  box-shadow: $button-shadow
+  cursor: pointer
+
+  &:active, &:focus
+    outline: none
+
+  &:hover, &:focus
+    transform: scale(1.05)
+    box-shadow: $button-shadow-hover
+
+  &:active
+    transform: scale(1)
+    box-shadow: $button-shadow-active
