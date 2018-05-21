@@ -13,7 +13,12 @@ const SourceSection = ({ onSourceChange }) => (
       </>
     </Label>
 
-    <input type="url" className={styles.sourceInput} required onChange={onSourceChange} />
+    <input
+      type="text"
+      className={styles.sourceInput}
+      onChange={onSourceChange}
+      placeholder="https://example.com"
+    />
   </section>
 );
 

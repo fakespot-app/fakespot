@@ -71,7 +71,15 @@ class Challange extends React.Component {
     });
   }
 
-  onSubmit = () => {
+  onChoiceChange = choice => () => {
+    console.log(choice);
+    this.setState({
+      choiceSubmitted: choice,
+    });
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
     console.log(this.state.sourceSubmitted, this.state.choiceSubmitted);
   }
 
@@ -79,12 +87,16 @@ class Challange extends React.Component {
     const { challange } = this.props;
 
     return (
-      <Container>
+      <Container onSubmit={this.onSubmit}>
         <Header quote={challange.text} />
 
         <SourceSection onSourceChange={this.onSourceChange} />
 
-        <ChoiceButtons isSourceValid={this.state.isSourceValid} />
+        <ChoiceButtons
+          isSourceValid={this.state.isSourceValid}
+          choiceSubmitted={this.state.choiceSubmitted}
+          onChoiceChange={this.onChoiceChange}
+        />
       </Container>
     );
   }

@@ -5,23 +5,30 @@
 
 .button
   display: inline-flex
-  justify-content: space-between
   align-items: center
-  height: $challenge-button-height
+  justify-content: space-between
   width: calc(50% - 16px)
-  border-radius: $challenge-button-height / 2
+  height: $challenge-button-height
+  transition: background .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out
   border: 1px solid
-  cursor: pointer
+  border-radius: $challenge-button-height / 2
   color: $white
   font-family: $font-family
   font-size: 1.5em
-  transition: background .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out
   box-shadow: 0 0 0 2px transparent
+  cursor: pointer
+
+  &:focus
+    outline: 0
 
   &True
-    background: $challenge-button-true-background
-    border-color: $challenge-button-true-border
     padding-right: 48px
+    border-color: $challenge-button-true-border
+    background: $challenge-button-true-background
+
+    &[disabled]
+      border-color: $challenge-button-true-border-disabled
+      background: $challenge-button-true-background-disabled
 
     &:not([disabled])
       &:hover, &:focus
@@ -29,8 +36,8 @@
         box-shadow: 0 0 0 2px $challenge-button-true-border-hover
 
     &[disabled]
-      background: $challenge-button-true-background-disabled
       border-color: $challenge-button-true-border-disabled
+      background: $challenge-button-true-background-disabled
 
     .icon
       \:global .material-icons
@@ -39,9 +46,13 @@
 
   &False
     flex-direction: row-reverse
-    background: $challenge-button-false-background
-    border-color: $challenge-button-false-border
     padding-left: 48px
+    border-color: $challenge-button-false-border
+    background: $challenge-button-false-background
+
+    &[disabled]
+      border-color: $challenge-button-false-border-disabled
+      background: $challenge-button-false-background-disabled
 
     &:not([disabled])
       &:hover, &:focus
@@ -55,19 +66,19 @@
 
   .icon
     display: flex
-    justify-content: center
-    align-items: center
     position: relative
-    background: $white
-    height: $challenge-button-height * 0.8181818
+    align-items: center
+    justify-content: center
     width: $challenge-button-height * 0.8181818
+    height: $challenge-button-height * 0.8181818
     border-radius: 50%
+    background: $white
 
     \:global .material-icons
       position: absolute
-      font-size: 1.5em
-      color: $challenge-button-icon-color-disabled
       transition: opacity .2s ease-in-out
+      color: $challenge-button-icon-color-disabled
+      font-size: 1.5em
 
       &:last-child
         opacity: 0

@@ -7,7 +7,7 @@ import Label from "../Label";
 
 import styles from "./styles.sass";
 
-const ChoiceButtons = ({ isSourceValid }) => (
+const ChoiceButtons = ({ isSourceValid, choiceSubmitted, onChoiceChange }) => (
   <section className={styles.container}>
     <Label className={styles.label}>
       <>
@@ -18,14 +18,30 @@ const ChoiceButtons = ({ isSourceValid }) => (
     <div
       className={styles.buttonsContainer}
     >
-      <button type="submit" disabled={!isSourceValid} className={className(styles.button, styles.buttonTrue)}>
+      <button
+        type="submit"
+        disabled={!isSourceValid}
+        className={className(
+          styles.button,
+          styles.buttonTrue,
+        )}
+        onClick={onChoiceChange(true)}
+      >
         <div className={styles.icon}>
           <Icon>lock</Icon>
           <Icon>done</Icon>
         </div>
         <span>Prawda</span>
       </button>
-      <button type="submit" disabled={!isSourceValid} className={className(styles.button, styles.buttonFalse)}>
+      <button
+        type="submit"
+        disabled={!isSourceValid}
+        className={className(
+          styles.button,
+          styles.buttonFalse,
+        )}
+        onClick={onChoiceChange(false)}
+      >
         <div className={styles.icon}>
           <Icon>lock</Icon>
           <Icon>lock</Icon>
