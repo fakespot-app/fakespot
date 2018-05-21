@@ -1,8 +1,10 @@
 .container
   display: grid
-  grid-template-columns: 2fr 7fr
+  grid-template-columns: 300px 1fr 400px
+  grid-template-areas: "beforeMain main afterMain"
 
   .main
     height: 100vh
     padding: 64px 0
     overflow-y: auto
+    box-sizing: border-box

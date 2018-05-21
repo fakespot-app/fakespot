@@ -5,15 +5,20 @@ import newspaperImg from "assets/images/newspaper.png";
 
 import styles from "./style.sass";
 
-const NewsPaper = ({ children }) =>
-  (<div className={styles.newsPaper}>{children}<img src={newspaperImg} alt="" /></div>);
+const NewsPaper = ({ titleText }) =>
+  (
+    <div className={styles.newsPaper}>
+      <h1>{titleText}</h1>
+      <img src={newspaperImg} alt="" />
+    </div>
+  );
 
 NewsPaper.propTypes = {
-  children: PropTypes.node,
+  titleText: PropTypes.string,
 };
 
 NewsPaper.defaultProps = {
-  children: null,
+  titleText: "",
 };
 
 export default NewsPaper;

@@ -7,13 +7,11 @@ import { questionsFetch, questionsSubmit } from "actions/questions";
 
 import ChallangeCard from "components/ChallangeCard";
 import NewsPaper from "components/Challange/NewsPaper/";
-import SourceInput from "components/Challange/SourceInput/";
-import SubmitButton from "components/Challange/SubmitButton";
+import ExceriseContent from "components/Challange/ExcersiseContent/";
 import LifeLinesList from "components/Challange/LifeLinesList/";
 import ExceriseHeading from "components/Challange/ExceriseHeading/";
-import TrueFalseButtons from "components/Challange/TrueFalseButtons/";
 
-import HNM from "./HintNotificationsManager";
+import HNM from "utils/HintNotificationsManager";
 
 const mapStateToProps = ({ questions, notifications }) => ({
   challange: questions.get("data").last(),
@@ -36,9 +34,7 @@ class Challange extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      source: "",
       lifeLinesUsed: [],
-      optionSelected: null,
       lifelinesUnlocked: 0,
     };
 
@@ -55,23 +51,7 @@ class Challange extends React.Component {
     this.hintNotificationsManager.clearTimeouts();
   }
 
-  onSourceInput = (e) => {
-    this.setState({ source: e.target.value });
-  }
-
-  onSubmitTrue = () => this.selectButton(true);
-  onSubmitFalse = () => this.selectButton(false);
-
-  selectButton = (val) => {
-    this.setState({
-      optionSelected: val,
-    });
-  }
-
-  submitAnswer = (e) => {
-    e.preventDefault();
-    const { optionSelected, source } = this.state;
-
+  submitAnswer = ({ optionSelected, source }) => {
     if (optionSelected === null || source === "") {
       return;
     }
@@ -107,25 +87,11 @@ class Challange extends React.Component {
 
     return (
       <ChallangeCard>
-        <NewsPaper>
-          <h1>{challange.text}</h1>
-        </NewsPaper>
+        <NewsPaper titleText={challange.text} />
 
         <ExceriseHeading />
 
-        <form className="pt-0" onSubmit={this.submitAnswer}>
-          <TrueFalseButtons
-            onSubmitTrue={this.onSubmitTrue}
-            onSubmitFalse={this.onSubmitFalse}
-            selected={this.state.optionSelected}
-          />
-
-          <SourceInput
-            onSourceInput={this.onSourceInput}
-          />
-
-          <SubmitButton />
-        </form>
+        <ExceriseContent onSubmit={this.submitAnswer} />
 
         <LifeLinesList
           lifeLines={challange.lifeLines}

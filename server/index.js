@@ -73,8 +73,19 @@ server.get("/api/question/:userToken", async (req, res) => {
 server.get("/api/users/me", async (req, res) => {
   res.jsonp({
     username: "Andrzej",
-    badgesCollected: [
-      0,
+    achivementsCollected: [
+      {
+        achivementId: 0,
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis suscipit modi hic, et sunt dolorem illum ea omnis voluptates. Culpa tempore obcaecati odio earum, in neque ratione placeat iusto necessitatibus?",
+        src: "/badges/1.png",
+        collected: 1526767200000,
+      },
+      {
+        achivementId: 1,
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis suscipit modi hic, et sunt dolorem illum ea omnis voluptates. Culpa tempore obcaecati odio earum, in neque ratione placeat iusto necessitatibus?",
+        src: "/badges/2.png",
+        collected: 1526767000000,
+      },
     ],
     points: 0,
     avatar: "/avatar.gif",

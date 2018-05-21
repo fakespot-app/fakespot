@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import toJS from "utils/toJS/";
 
@@ -8,13 +9,13 @@ import { badgesFetch } from "actions/badges";
 import { notificationsFetch } from "actions/notifications";
 import { userFetch } from "actions/user";
 
-import Sidebar from "components/Sidebar/";
 import Container from "components/Container";
+import MenuBar from "components/MenuBar";
 
 import Challange from "../Challange";
 import Splash from "../Splash";
 import Answer from "../Answer";
-
+import InGameSidebar from "../InGameSidebar";
 
 const mapStateToProps = ({ state, badges, user }) => ({
   state: state.get("state"),
@@ -27,8 +28,6 @@ class Main extends React.PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     state: PropTypes.string.isRequired,
-    badges: PropTypes.array.isRequired,
-    user: PropTypes.object.isRequired,
     userFetched: PropTypes.bool.isRequired,
   }
 
@@ -49,30 +48,51 @@ class Main extends React.PureComponent {
 
     switch (state) {
       case "splash": {
-        mainComponent = <Splash />;
+        mainComponent = Splash;
         break;
       }
       case "playing": {
-        mainComponent = <Challange />;
+        mainComponent = Challange;
         break;
       }
       case "answer": {
-        mainComponent = <Answer />;
+        mainComponent = Answer;
         break;
       }
 
       // no default
     }
 
+    const main = (
+      <Switch>
+        <Route component={mainComponent} path="/singleplayer" />
+        <Redirect to="/singleplayer" />
+      </Switch>
+    );
+
+    const afterMain = (
+      <>
+        <Route
+          component={InGameSidebar}
+          path="/singleplayer"
+        />
+        <Route
+          component={InGameSidebar}
+          path="/multiplayer"
+        />
+      </>
+    );
+
     return (
       <Container
-        main={mainComponent}
-      >
-        <Sidebar
-          badges={this.props.badges}
-          user={this.props.user}
-        />
-      </Container>
+        beforeMain={
+          <MenuBar />
+        }
+
+        main={main}
+
+        afterMain={afterMain}
+      />
     );
   }
 }

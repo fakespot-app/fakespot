@@ -33,6 +33,7 @@ module.exports = (production, cssType, ExtractSASS) => {
         localIdentName: "[name]__[local]__[hash:base64:5]",
         modules: true,
         sourceMap: !production,
+        camelCase: true,
       },
     }, {
       loader: "postcss-loader",

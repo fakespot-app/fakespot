@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow, configure } from "enzyme";
+import toJson from "enzyme-to-json";
 import Adapter from "enzyme-adapter-react-16";
 
 import Container from "./index";
@@ -10,29 +11,26 @@ describe("<Container />", () => {
   test("should render", () => {
     const wrapper = shallow(<Container />);
 
-    expect(
-      wrapper.hasClass("container") &&
-      wrapper.childAt(0).hasClass("main"),
-    ).toBe(true);
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render child", () => {
-    const child = (
+  test("should render beforeMain", () => {
+    const beforeMain = (
       <span>
         Hello
       </span>
     );
 
     const wrapper = shallow(
-      <Container>
-        {child}
-      </Container>,
+      <Container
+        beforeMain={beforeMain}
+      />,
     );
 
-    expect(wrapper.childAt(0).equals(child)).toBe(true);
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render main prop", () => {
+  test("should render main", () => {
     const main = (
       <span>
         There
@@ -40,14 +38,30 @@ describe("<Container />", () => {
     );
 
     const wrapper = shallow(
-      <Container main={main} />,
+      <Container
+        main={main}
+      />,
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("should render afterMain", () => {
+    const afterMain = (
+      <span>
+        Guys!
+      </span>
     );
 
-    expect(wrapper.childAt(0).childAt(0).equals(main)).toBe(true);
+    const wrapper = shallow(
+      <Container
+        afterMain={afterMain}
+      />,
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   test("should render children and main prop", () => {
-    const child = (
+    const beforeMain = (
       <span>
         Hello
       </span>
@@ -59,15 +73,19 @@ describe("<Container />", () => {
       </span>
     );
 
-    const wrapper = shallow(
-      <Container main={main}>
-        {child}
-      </Container>,
+    const afterMain = (
+      <span>
+        Guys!
+      </span>
     );
 
-    expect(
-      wrapper.childAt(0).equals(child) &&
-      wrapper.childAt(1).childAt(0).equals(main),
-    ).toBe(true);
+    const wrapper = shallow(
+      <Container
+        beforeMain={beforeMain}
+        main={main}
+        afterMain={afterMain}
+      />,
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

@@ -3,19 +3,22 @@ import PropTypes from "prop-types";
 
 import styles from "./styles.sass";
 
-import Badges from "./Badges/";
-import Avatar from "./Avatar/";
+// import Badges from "./Badges/";
+// import Avatar from "./Avatar/";
 
-export default class Sidebar extends React.Component {
+
+export default class InGameSidebar extends React.Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     badges: PropTypes.array.isRequired,
   }
 
   render() {
+    const { currentLevel, levelPoints } = this.props;
     return (
-      <aside className={`${styles.sidebar} flex flex-col items-center`}>
-        <header>
+      <aside className={`${styles.sidebar}`}>
+        <p>{ currentLevel }, {levelPoints}</p>
+        {/* <header>
           <p className="text-center">Wynik</p>
           <p className={`${styles.scoreText} text-center`}>{this.props.user.points}</p>
         </header>
@@ -29,7 +32,7 @@ export default class Sidebar extends React.Component {
         </main>
         <Avatar
           avatar={this.props.user.avatar}
-        />
+        /> */}
       </aside>
     );
   }

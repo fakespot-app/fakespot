@@ -8,7 +8,10 @@ module.exports = {
     "es6": true,
     "jest/globals": true
   },
-  "plugins": ["jest"],
+  "plugins": [
+    "jest",
+    "babel"
+  ],
   "settings": {
     "import/resolver": {
       "webpack": {
@@ -39,7 +42,8 @@ module.exports = {
     "function-paren-newline": 0,
     "func-names": 0,
     "semi": ["error", "always"],
-    "quotes": ["error", "double"],
+    "quotes": 0,
+    "babel/quotes": ["error", "double"],
     "no-console": 0,
     "prefer-template": "warn",
     "eol-last": 0,

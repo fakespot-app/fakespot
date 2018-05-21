@@ -3,23 +3,28 @@ import PropTypes from "prop-types";
 
 import styles from "./style.sass";
 
-const Container = ({ main, children }) => (
+const Container = ({ beforeMain, main, afterMain }) => (
   <div className={styles.container}>
-    {children}
-    <div className={styles.main}>
+    {beforeMain}
+
+    <main className={styles.main}>
       {main}
-    </div>
+    </main>
+
+    {afterMain}
   </div>
 );
 
 Container.propTypes = {
+  beforeMain: PropTypes.node,
   main: PropTypes.node,
-  children: PropTypes.node,
+  afterMain: PropTypes.node,
 };
 
 Container.defaultProps = {
+  beforeMain: null,
   main: null,
-  children: null,
+  afterMain: null,
 };
 
 export default Container;
