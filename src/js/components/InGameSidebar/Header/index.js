@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Label from "../Label/";
 
 import styles from "./styles.sass";
 
@@ -11,7 +12,11 @@ const Header = ({ levelPoints, currentLevelMaxPoints }) => (
         style={{ width: `${(levelPoints / currentLevelMaxPoints) * 100}%` }}
       />
     </div>
-    <div className={styles.progressLabel}>Postęp</div>
+    <Label className={styles.progressLabel}>
+      <>
+        Postęp
+      </>
+    </Label>
     <div className={styles.progress}>
       <span className={styles.progressPoints}>{levelPoints} / {currentLevelMaxPoints}</span>
       <span> pkt</span>

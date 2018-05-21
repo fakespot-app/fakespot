@@ -3,20 +3,13 @@
 exports[`<Container /> should render 1`] = `
 <div
   className="container"
->
-  <main
-    className="main"
-  />
-</div>
+/>
 `;
 
 exports[`<Container /> should render afterMain 1`] = `
 <div
   className="container"
 >
-  <main
-    className="main"
-  />
   <span>
     Guys!
   </span>
@@ -30,9 +23,6 @@ exports[`<Container /> should render beforeMain 1`] = `
   <span>
     Hello
   </span>
-  <main
-    className="main"
-  />
 </div>
 `;
 
@@ -43,13 +33,9 @@ exports[`<Container /> should render children and main prop 1`] = `
   <span>
     Hello
   </span>
-  <main
-    className="main"
-  >
-    <span>
-      There
-    </span>
-  </main>
+  <span>
+    There
+  </span>
   <span>
     Guys!
   </span>
@@ -60,12 +46,8 @@ exports[`<Container /> should render main 1`] = `
 <div
   className="container"
 >
-  <main
-    className="main"
-  >
-    <span>
-      There
-    </span>
-  </main>
+  <span>
+    There
+  </span>
 </div>
 `;

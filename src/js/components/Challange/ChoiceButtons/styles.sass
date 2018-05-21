@@ -1,0 +1,96 @@
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.button
+  display: inline-flex
+  justify-content: space-between
+  align-items: center
+  height: $challenge-button-height
+  width: calc(50% - 16px)
+  border-radius: $challenge-button-height / 2
+  border: 1px solid
+  cursor: pointer
+  color: $white
+  font-family: $font-family
+  font-size: 1.5em
+  transition: background .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out
+  box-shadow: 0 0 0 2px transparent
+
+  &True
+    background: $challenge-button-true-background
+    border-color: $challenge-button-true-border
+    padding-right: 48px
+
+    &:not([disabled])
+      &:hover, &:focus
+        border-color: $challenge-button-true-border-hover
+        box-shadow: 0 0 0 2px $challenge-button-true-border-hover
+
+    &[disabled]
+      background: $challenge-button-true-background-disabled
+      border-color: $challenge-button-true-border-disabled
+
+    .icon
+      \:global .material-icons
+        &:last-child
+          color: $challenge-button-true-background              
+
+  &False
+    flex-direction: row-reverse
+    background: $challenge-button-false-background
+    border-color: $challenge-button-false-border
+    padding-left: 48px
+
+    &:not([disabled])
+      &:hover, &:focus
+        border-color: $challenge-button-false-border-hover
+        box-shadow: 0 0 0 2px $challenge-button-false-border-hover
+
+    .icon
+      \:global .material-icons
+        &:last-child
+          color: $challenge-button-false-background 
+
+  .icon
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    background: $white
+    height: $challenge-button-height * 0.8181818
+    width: $challenge-button-height * 0.8181818
+    border-radius: 50%
+
+    \:global .material-icons
+      position: absolute
+      font-size: 1.5em
+      color: $challenge-button-icon-color-disabled
+      transition: opacity .2s ease-in-out
+
+      &:last-child
+        opacity: 0
+
+  &:first-child
+    margin-right: 16px
+
+  &:last-child
+    margin-left: 16px
+
+
+.buttonsContainer
+  width: 75%
+
+  .button:not([disabled])
+    .icon
+      \:global .material-icons
+        &:first-child
+          opacity: 0
+
+        &:last-child
+          opacity: 1
+
+.label
+  margin-bottom: 32px
+

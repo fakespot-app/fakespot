@@ -4,7 +4,8 @@ export const questionsFetch = () => ({ type: FETCH });
 export const questionsFetched = payload => ({ type: FETCHED, payload });
 export const questionsFetchFailed = payload => ({ type: FETCH_FAILED, payload });
 
-export const questionsSubmit = (challangeData, challange) =>
-  ({ type: SUBMIT, payload: { challangeData, challange } });
+export const questionsSubmit = (submittedChallange, challange) =>
+  ({ type: SUBMIT, payload: { submittedChallange, challange } });
 
-export const questionsSaveAnswer = (challangeData, points) => ({ type: SAVE_ANSWER, payload: { challangeData, points } });
+export const questionsSaveAnswer =
+  (submittedChallange, points) => ({ type: SAVE_ANSWER, payload: { submittedChallange, points } });

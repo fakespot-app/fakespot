@@ -6,8 +6,8 @@ import toJS from "utils/toJS";
 
 import { stateSetState } from "actions/state";
 
-import ChallangeCard from "components/ChallangeCard";
-import ChallangeCardFrame from "components/ChallangeCardFrame";
+// import ChallangeCard from "components/ChallangeCard";
+// import ChallangeCardFrame from "components/ChallangeCardFrame";
 
 import Charts from "components/Answer/Charts/";
 import Header from "components/Answer/Header/";
@@ -35,36 +35,38 @@ class Answer extends React.Component {
     const wasAnsweredCorrectly = challange.isTrue === challange.userAnswer.isTrue;
 
     return (
-      <ChallangeCard>
-        <main className="flex flex-col">
-          <Header
-            isTrue={challange.isTrue}
-            challangeText={challange.text}
-            answerCorrect={wasAnsweredCorrectly}
-          />
+      <PlayAgainButton onClick={this.playAgain} />
 
-          <ChallangeCardFrame>
-            <QuestionComment
-              comment={challange.questionComment}
-            />
+      // <ChallangeCard>
+      //   <main className="flex flex-col">
+      //     <Header
+      //       isTrue={challange.isTrue}
+      //       challangeText={challange.text}
+      //       answerCorrect={wasAnsweredCorrectly}
+      //     />
 
-            <Charts
-              globalAnswers={challange.globalAnswers}
-            />
+      //     <ChallangeCardFrame>
+      //       <QuestionComment
+      //         comment={challange.questionComment}
+      //       />
 
-            <QuestionComment
-              title="Gdzie dobrze sprawdzać taką informację?"
-              comment={challange.bestSourceComment}
-            />
+      //       <Charts
+      //         globalAnswers={challange.globalAnswers}
+      //       />
 
-            <BestSource
-              bestSource={challange.bestSource}
-            />
-          </ChallangeCardFrame>
+      //       <QuestionComment
+      //         title="Gdzie dobrze sprawdzać taką informację?"
+      //         comment={challange.bestSourceComment}
+      //       />
 
-          <PlayAgainButton onClick={this.playAgain} />
-        </main>
-      </ChallangeCard>
+      //       <BestSource
+      //         bestSource={challange.bestSource}
+      //       />
+      //     </ChallangeCardFrame>
+
+      //     <PlayAgainButton onClick={this.playAgain} />
+      //   </main>
+      // </ChallangeCard>
     );
   }
 }

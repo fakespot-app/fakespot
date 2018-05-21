@@ -7,9 +7,7 @@ const Container = ({ beforeMain, main, afterMain }) => (
   <div className={styles.container}>
     {beforeMain}
 
-    <main className={styles.main}>
-      {main}
-    </main>
+    {main}
 
     {afterMain}
   </div>

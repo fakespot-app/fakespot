@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Label from "../Label/";
+
 
 import styles from "./styles.sass";
 
@@ -9,7 +11,11 @@ const createImageBadges = badges => badges.map(b =>
 
 const RecentAchivements = ({ recentAchivements }) => (
   <div className={styles.container}>
-    <p className={styles.header}>Ostatnie osiągnięcia</p>
+    <Label className={styles.header}>
+      <>
+        Ostatnie osiągnięcia
+      </>
+    </Label>
 
     <div className={styles.badges}>
       { createImageBadges(recentAchivements) }

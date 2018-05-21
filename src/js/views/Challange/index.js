@@ -5,11 +5,16 @@ import toJS from "utils/toJS";
 
 import { questionsFetch, questionsSubmit } from "actions/questions";
 
-import ChallangeCard from "components/ChallangeCard";
-import NewsPaper from "components/Challange/NewsPaper/";
-import ExceriseContent from "components/Challange/ExcersiseContent/";
-import LifeLinesList from "components/Challange/LifeLinesList/";
-import ExceriseHeading from "components/Challange/ExceriseHeading/";
+// import ChallangeCard from "components/ChallangeCard";
+// import NewsPaper from "components/Challange/NewsPaper/";
+// import ExceriseContent from "components/Challange/ExcersiseContent/";
+// import LifeLinesList from "components/Challange/LifeLinesList/";
+// import ExceriseHeading from "components/Challange/ExceriseHeading/";
+
+import Header from "components/Challange/Header";
+import Container from "components/Challange/Container";
+import SourceSection from "components/Challange/SourceSection";
+import ChoiceButtons from "components/Challange/ChoiceButtons";
 
 import HNM from "utils/HintNotificationsManager";
 
@@ -33,12 +38,13 @@ class Challange extends React.Component {
 
   constructor(props) {
     super();
-    this.state = {
-      lifeLinesUsed: [],
-      lifelinesUnlocked: 0,
-    };
-
     this.hintNotificationsManager = new HNM(props.notifications, this.unlockLifeLine);
+  }
+
+  state = {
+    sourceSubmitted: "",
+    isSourceValid: false,
+    choiceSubmitted: null,
   }
 
   componentDidMount() {
@@ -51,55 +57,35 @@ class Challange extends React.Component {
     this.hintNotificationsManager.clearTimeouts();
   }
 
-  submitAnswer = ({ optionSelected, source }) => {
-    if (optionSelected === null || source === "") {
-      return;
+  onSourceChange = (e) => {
+    const ulrRegex = /^(https?:\/\/)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
+    let isSourceValid = false;
+
+    if (ulrRegex.test(e.target.value)) {
+      isSourceValid = true;
     }
 
-    const data = {
-      isTrue: optionSelected,
-      source,
-    };
-
-    const { challange } = this.props;
-
-    this.props.dispatch(questionsSubmit(data, challange));
-  }
-
-  unlockLifeLine = () => {
     this.setState({
-      lifelinesUnlocked: this.state.lifelinesUnlocked + 1,
+      sourceSubmitted: e.target.value,
+      isSourceValid,
     });
   }
 
-  useLifeline = n => () => {
-    this.setState({
-      lifeLinesUsed: [...this.state.lifeLinesUsed, n],
-    });
+  onSubmit = () => {
+    console.log(this.state.sourceSubmitted, this.state.choiceSubmitted);
   }
 
   render() {
     const { challange } = this.props;
 
-    if (this.props.fetched === false) {
-      return null;
-    }
-
     return (
-      <ChallangeCard>
-        <NewsPaper titleText={challange.text} />
+      <Container>
+        <Header quote={challange.text} />
 
-        <ExceriseHeading />
+        <SourceSection onSourceChange={this.onSourceChange} />
 
-        <ExceriseContent onSubmit={this.submitAnswer} />
-
-        <LifeLinesList
-          lifeLines={challange.lifeLines}
-          used={this.state.lifeLinesUsed}
-          onClick={this.useLifeline}
-          unlocked={this.state.lifelinesUnlocked}
-        />
-      </ChallangeCard>
+        <ChoiceButtons isSourceValid={this.state.isSourceValid} />
+      </Container>
     );
   }
 }

@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SAVE_ANSWER: {
       return state
-        .setIn(["data", -1, "userAnswer"], action.payload.challangeData)
+        .setIn(["data", -1, "userAnswer"], action.payload.submittedChallange)
         .setIn(["data", -1, "wasAnswered"], true)
         .update("levelPoints", points => points + action.payload.points);
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Label from "../Label/";
 
 import styles from "./styles.sass";
 
@@ -7,7 +8,11 @@ const LevelDescription = ({
   currentLevel, currentLevelDescription, currentLevelHeader, currentLevelImage,
 }) => (
   <main className={styles.container}>
-    <p className={styles.levelLabel}>Poziom {currentLevel}</p>
+    <Label className={styles.levelLabel}>
+      <>
+        Poziom {currentLevel}
+      </>
+    </Label>
     <div className={styles.levelHeader}>
       <img src={currentLevelImage} alt="" className={styles.levelImage} />
       { currentLevelHeader }

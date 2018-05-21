@@ -24,14 +24,14 @@ function* fetchQuestion() {
 }
 
 function* submitAnswers({ payload }) {
-  const { challangeData, challange } = payload;
+  const { submittedChallange, challange } = payload;
 
   yield put(userCompleteQuestion());
 
-  if (challangeData.isTrue === challange.isTrue) {
-    yield put(questionsSaveAnswer(challangeData, 100));
+  if (submittedChallange.isTrue === challange.isTrue) {
+    yield put(questionsSaveAnswer(submittedChallange, 100));
   } else {
-    yield put(questionsSaveAnswer(challangeData, 0));
+    yield put(questionsSaveAnswer(submittedChallange, 0));
   }
 
   yield put(stateSetState("answer"));
