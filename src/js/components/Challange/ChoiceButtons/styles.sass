@@ -16,7 +16,9 @@
   font-family: $font-family
   font-size: 1.5em
   box-shadow: 0 0 0 2px transparent
-  cursor: pointer
+
+  &:not([disabled])
+    cursor: pointer
 
   &:focus
     outline: 0
@@ -35,14 +37,10 @@
         border-color: $challenge-button-true-border-hover
         box-shadow: 0 0 0 2px $challenge-button-true-border-hover
 
-    &[disabled]
-      border-color: $challenge-button-true-border-disabled
-      background: $challenge-button-true-background-disabled
-
     .icon
       \:global .material-icons
         &:last-child
-          color: $challenge-button-true-background              
+          color: $challenge-button-true-background
 
   &False
     flex-direction: row-reverse
@@ -62,7 +60,7 @@
     .icon
       \:global .material-icons
         &:last-child
-          color: $challenge-button-false-background 
+          color: $challenge-button-false-background
 
   .icon
     display: flex

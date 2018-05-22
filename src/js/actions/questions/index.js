@@ -8,4 +8,4 @@ export const questionsSubmit = (submittedChallange, challange) =>
   ({ type: SUBMIT, payload: { submittedChallange, challange } });
 
 export const questionsSaveAnswer =
-  (submittedChallange, points) => ({ type: SAVE_ANSWER, payload: { submittedChallange, points } });
+ (submittedChallange, points) => ({ type: SAVE_ANSWER, payload: { submittedChallange, points } });

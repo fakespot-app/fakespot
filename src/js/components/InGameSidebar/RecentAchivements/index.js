@@ -1,12 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Label from "../Label/";
 
+import Tooltip from "components/Tooltip";
+
+import Label from "../Label/";
 
 import styles from "./styles.sass";
 
 const createImageBadges = badges => badges.map(b =>
-  <img src={b.src} alt="" key={`sidebar-badge-${b.achivementId}`} />,
+  (
+    <Tooltip
+      key={`sidebar-badge-${b.achivementId}`}
+      className={styles.imageContainer}
+      left
+      text={
+        <>
+          <p><strong>{b.title}</strong></p>
+          <p>{b.description}</p>
+        </>
+      }
+    >
+      <img src={b.src} alt="" />
+    </Tooltip>
+  ),
 );
 
 const RecentAchivements = ({ recentAchivements }) => (
@@ -27,6 +43,7 @@ RecentAchivements.propTypes = {
   recentAchivements: PropTypes.arrayOf(PropTypes.shape({
     achivementId: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     collected: PropTypes.number.isRequired,
   })).isRequired,

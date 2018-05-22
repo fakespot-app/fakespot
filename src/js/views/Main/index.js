@@ -9,7 +9,7 @@ import { badgesFetch } from "actions/badges";
 import { notificationsFetch } from "actions/notifications";
 import { userFetch } from "actions/user";
 
-import Container from "components/Container";
+import RootContainer from "components/RootContainer";
 import MenuBar from "components/MenuBar";
 
 import Challange from "../Challange";
@@ -84,7 +84,7 @@ class Main extends React.PureComponent {
     );
 
     return (
-      <Container
+      <RootContainer
         beforeMain={
           <MenuBar />
         }

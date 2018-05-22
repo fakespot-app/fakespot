@@ -76,13 +76,15 @@ server.get("/api/users/me", async (req, res) => {
     achivementsCollected: [
       {
         achivementId: 0,
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis suscipit modi hic, et sunt dolorem illum ea omnis voluptates. Culpa tempore obcaecati odio earum, in neque ratione placeat iusto necessitatibus?",
+        title: "Czarne jest białe",
+        description: "Rozwiąż fakenewsa o tematyce politycznej",
         src: "/badges/1.png",
         collected: 1526767200000,
       },
       {
         achivementId: 1,
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis suscipit modi hic, et sunt dolorem illum ea omnis voluptates. Culpa tempore obcaecati odio earum, in neque ratione placeat iusto necessitatibus?",
+        title: "Piłka jest jedna, a bramki są dwie",
+        description: "Rozwiąż fakenewsa o tematyce sportowej",
         src: "/badges/2.png",
         collected: 1526767000000,
       },

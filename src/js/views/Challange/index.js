@@ -58,7 +58,7 @@ class Challange extends React.Component {
   }
 
   onSourceChange = (e) => {
-    const ulrRegex = /^(https?:\/\/)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
+    const ulrRegex = /^(https?:\/\/)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
     let isSourceValid = false;
 
     if (ulrRegex.test(e.target.value)) {
@@ -80,11 +80,30 @@ class Challange extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.sourceSubmitted, this.state.choiceSubmitted);
+
+    e.preventDefault();
+    const { choiceSubmitted, sourceSubmitted } = this.state;
+
+    if (choiceSubmitted === null || sourceSubmitted === "") {
+      return;
+    }
+
+    const submittedChallange = {
+      isTrue: choiceSubmitted,
+      source: sourceSubmitted,
+    };
+
+    const { challange } = this.props;
+
+    this.props.dispatch(questionsSubmit(submittedChallange, challange));
   }
 
   render() {
-    const { challange } = this.props;
+    const { challange, fetched } = this.props;
+
+    if (!fetched) {
+      return null;
+    }
 
     return (
       <Container onSubmit={this.onSubmit}>

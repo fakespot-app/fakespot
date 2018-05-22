@@ -4,7 +4,7 @@ import { SET_STATE } from "actions/state/types";
 /* eslint-disable spaced-comment */
 
 const initialState = Map({
-  /*
+  // /*
   state: "splash",
   /*/
   state: "playing",
