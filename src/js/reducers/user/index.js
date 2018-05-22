@@ -27,7 +27,7 @@ export default function reducer(state = initialState, action) {
 
     case GIVE_BADGE: {
       return state
-        .updateIn(["data", "badgesCollected"], badgesCollected => badgesCollected.push(action.payload));
+        .updateIn(["data", "achivementsCollected"], achivementsCollected => achivementsCollected.push(action.payload));
     }
     // no default
   }

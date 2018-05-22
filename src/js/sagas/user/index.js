@@ -15,15 +15,27 @@ function* completeQuestion() {
 
   const data = yield select(state => state.user.get("data"));
 
-  if (data.get("questionsCompleted") >= 5 && data.get("achivementsCollected").toArray().indexOf(1) < 0) {
-    yield put(userGiveBadge(1));
+  const didAnswerQuestions = data.get("questionsCompleted") >= 5;
+  const didAlreadyReceiveAchivement = data.get("achivementsCollected").toArray().find(a => a.get("achivementId") === 1).length > 0;
+  if (didAnswerQuestions && !didAlreadyReceiveAchivement) {
+    console.log("Get achivement!");
+
+    const achivement = {
+      achivementId: 2,
+      title: "Rozwiąż 5 zadań",
+      description: "Rozwiąż fakenewsa o tematyce politycznej",
+      src: "/badges/4.png",
+      collected: new Date().getTime(),
+    };
+
+    yield put(userGiveBadge(achivement));
 
     requestPermission()
       .then((result) => {
         if (result === "granted") {
           new Notification("Odblokowałeś osiągnięcie!", {
-            body: "Rozwiąż 5 zadań",
-            icon: "/badges/2.png",
+            body: achivement.titile,
+            icon: achivement.src,
           });
         }
       });
