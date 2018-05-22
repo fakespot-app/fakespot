@@ -101,8 +101,9 @@ class Challange extends React.Component {
   render() {
     const { challange, fetched } = this.props;
 
+    console.log(fetched);
     if (!fetched) {
-      return null;
+      return <Container />;
     }
 
     return (

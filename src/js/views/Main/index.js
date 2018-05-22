@@ -65,8 +65,8 @@ class Main extends React.PureComponent {
 
     const main = (
       <Switch>
-        <Route component={mainComponent} path="/singleplayer" />
-        <Redirect to="/singleplayer" />
+        <Route component={mainComponent} path="/" />
+        <Redirect to="/" />
       </Switch>
     );
 
@@ -74,7 +74,7 @@ class Main extends React.PureComponent {
       <>
         <Route
           component={InGameSidebar}
-          path="/singleplayer"
+          path="/"
         />
         <Route
           component={InGameSidebar}
