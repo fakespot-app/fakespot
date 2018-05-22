@@ -20,7 +20,7 @@ export default class MenuBar extends React.Component {
         <nav className={styles.menu}>
           <ul>
             <li>
-              <NavLink to="/singleplayer" activeClassName={styles.active}>
+              <NavLink to="/" activeClassName={styles.active}>
                 <Icon>person_outline</Icon><span>Pojedynczy gracz</span>
               </NavLink>
             </li>
