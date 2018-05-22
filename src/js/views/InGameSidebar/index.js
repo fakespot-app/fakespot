@@ -10,7 +10,9 @@ import RecentAchivements from "components/InGameSidebar/RecentAchivements/";
 const mapStateToProps = ({ questions, user }) => ({
   currentLevel: questions.get("currentLevel"),
   levelPoints: questions.get("levelPoints"),
-  recentAchivements: user.get("data").get("achivementsCollected").sort((a, b) => (a.collected - b.collected)).slice(0, 3),
+  recentAchivements: user
+    .get("data")
+    .get("achivementsCollected"),
   currentLevelMaxPoints: questions.get("currentLevelMaxPoints"),
   currentLevelDescription: questions.get("currentLevelDescription"),
   currentLevelHeader: questions.get("currentLevelHeader"),
@@ -26,7 +28,10 @@ const InGameSidebar = ({
   currentLevelHeader,
   currentLevelImage,
   recentAchivements,
-}) => (
+}) => {
+  const recentAchivementsSorted = recentAchivements.sort((a, b) => b.collected - a.collected).slice(0, 3);
+
+  return (
   <>
     <Container>
       <Header
@@ -42,10 +47,11 @@ const InGameSidebar = ({
       />
 
       <RecentAchivements
-        recentAchivements={recentAchivements}
+        recentAchivements={recentAchivementsSorted}
       />
     </Container>
   </>
-);
+  );
+};
 
 export default connect(mapStateToProps)(toJS(InGameSidebar));
