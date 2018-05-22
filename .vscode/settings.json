@@ -1,0 +1,5 @@
+{
+  "jest.pathToJest": "yarn test:vscode",
+  "autoimport.filesToScan": "**/*.{js}",
+  "eslint.enable": true, 
+}

@@ -5,15 +5,18 @@ import toJS from "utils/toJS";
 
 import { questionsFetch, questionsSubmit } from "actions/questions";
 
-import ChallangeCard from "components/ChallangeCard";
-import NewsPaper from "components/Challange/NewsPaper/";
-import SourceInput from "components/Challange/SourceInput/";
-import SubmitButton from "components/Challange/SubmitButton";
-import LifeLinesList from "components/Challange/LifeLinesList/";
-import ExceriseHeading from "components/Challange/ExceriseHeading/";
-import TrueFalseButtons from "components/Challange/TrueFalseButtons/";
+// import ChallangeCard from "components/ChallangeCard";
+// import NewsPaper from "components/Challange/NewsPaper/";
+// import ExceriseContent from "components/Challange/ExcersiseContent/";
+// import LifeLinesList from "components/Challange/LifeLinesList/";
+// import ExceriseHeading from "components/Challange/ExceriseHeading/";
 
-import HNM from "./HintNotificationsManager";
+import Header from "components/Challange/Header";
+import Container from "components/Challange/Container";
+import SourceSection from "components/Challange/SourceSection";
+import ChoiceButtons from "components/Challange/ChoiceButtons";
+
+import HNM from "utils/HintNotificationsManager";
 
 const mapStateToProps = ({ questions, notifications }) => ({
   challange: questions.get("data").last(),
@@ -35,14 +38,13 @@ class Challange extends React.Component {
 
   constructor(props) {
     super();
-    this.state = {
-      source: "",
-      lifeLinesUsed: [],
-      optionSelected: null,
-      lifelinesUnlocked: 0,
-    };
-
     this.hintNotificationsManager = new HNM(props.notifications, this.unlockLifeLine);
+  }
+
+  state = {
+    sourceSubmitted: "",
+    isSourceValid: false,
+    choiceSubmitted: null,
   }
 
   componentDidMount() {
@@ -55,85 +57,66 @@ class Challange extends React.Component {
     this.hintNotificationsManager.clearTimeouts();
   }
 
-  onSourceInput = (e) => {
-    this.setState({ source: e.target.value });
-  }
+  onSourceChange = (e) => {
+    const ulrRegex = /^(https?:\/\/)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
+    let isSourceValid = false;
 
-  onSubmitTrue = () => this.selectButton(true);
-  onSubmitFalse = () => this.selectButton(false);
+    if (ulrRegex.test(e.target.value)) {
+      isSourceValid = true;
+    }
 
-  selectButton = (val) => {
     this.setState({
-      optionSelected: val,
+      sourceSubmitted: e.target.value,
+      isSourceValid,
     });
   }
 
-  submitAnswer = (e) => {
-    e.preventDefault();
-    const { optionSelected, source } = this.state;
+  onChoiceChange = choice => () => {
+    console.log(choice);
+    this.setState({
+      choiceSubmitted: choice,
+    });
+  }
 
-    if (optionSelected === null || source === "") {
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    e.preventDefault();
+    const { choiceSubmitted, sourceSubmitted } = this.state;
+
+    if (choiceSubmitted === null || sourceSubmitted === "") {
       return;
     }
 
-    const data = {
-      isTrue: optionSelected,
-      source,
+    const submittedChallange = {
+      isTrue: choiceSubmitted,
+      source: sourceSubmitted,
     };
 
     const { challange } = this.props;
 
-    this.props.dispatch(questionsSubmit(data, challange));
-  }
-
-  unlockLifeLine = () => {
-    this.setState({
-      lifelinesUnlocked: this.state.lifelinesUnlocked + 1,
-    });
-  }
-
-  useLifeline = n => () => {
-    this.setState({
-      lifeLinesUsed: [...this.state.lifeLinesUsed, n],
-    });
+    this.props.dispatch(questionsSubmit(submittedChallange, challange));
   }
 
   render() {
-    const { challange } = this.props;
+    const { challange, fetched } = this.props;
 
-    if (this.props.fetched === false) {
+    if (!fetched) {
       return null;
     }
 
     return (
-      <ChallangeCard>
-        <NewsPaper>
-          <h1>{challange.text}</h1>
-        </NewsPaper>
+      <Container onSubmit={this.onSubmit}>
+        <Header quote={challange.text} />
 
-        <ExceriseHeading />
+        <SourceSection onSourceChange={this.onSourceChange} />
 
-        <form className="pt-0" onSubmit={this.submitAnswer}>
-          <TrueFalseButtons
-            onSubmitTrue={this.onSubmitTrue}
-            onSubmitFalse={this.onSubmitFalse}
-            selected={this.state.optionSelected}
-          />
-
-          <SourceInput
-            onSourceInput={this.onSourceInput}
-          />
-
-          <SubmitButton />
-        </form>
-
-        <LifeLinesList
-          lifeLines={challange.lifeLines}
-          used={this.state.lifeLinesUsed}
-          onClick={this.useLifeline}
-          unlocked={this.state.lifelinesUnlocked}
+        <ChoiceButtons
+          isSourceValid={this.state.isSourceValid}
+          choiceSubmitted={this.state.choiceSubmitted}
+          onChoiceChange={this.onChoiceChange}
         />
-      </ChallangeCard>
+      </Container>
     );
   }
 }

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Container /> should render 1`] = `
+<div
+  className="container"
+/>
+`;
+
+exports[`<Container /> should render afterMain 1`] = `
+<div
+  className="container"
+>
+  <span>
+    Guys!
+  </span>
+</div>
+`;
+
+exports[`<Container /> should render beforeMain 1`] = `
+<div
+  className="container"
+>
+  <span>
+    Hello
+  </span>
+</div>
+`;
+
+exports[`<Container /> should render children and main prop 1`] = `
+<div
+  className="container"
+>
+  <span>
+    Hello
+  </span>
+  <span>
+    There
+  </span>
+  <span>
+    Guys!
+  </span>
+</div>
+`;
+
+exports[`<Container /> should render main 1`] = `
+<div
+  className="container"
+>
+  <span>
+    There
+  </span>
+</div>
+`;

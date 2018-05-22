@@ -1,6 +1,67 @@
-$challange-color: #7a6be8
+// Abstract
 $white: #fff
 $black: #000
+$main-color: #452d9d
+$main-color-lighter: #5133a5
+$font-family: "Lato", sans-serif
+$transition-length: .15s
+$tl: $transition-length
+
+// Root
+$body-color: #f1f2f5
+
+// Sidebar
+$sidebar-text-color: $white
+$sidebar-background: $main-color
+$sidebar-background-lighter: $main-color-lighter
+$sidebar-border-color: #7553ba
+$ingame-sidebar-label-color: #55c4f5
+
+$challenge-quote-color: $main-color
+$challenge-header-background: $white
+$challenge-label-text: mix($sidebar-background, $white, 50%)
+
+$challenge-input-border: $challenge-label-text
+$challenge-input-border-focus: $main-color
+$challenge-input-text: mix($black, $white, 66%)
+$challenge-input-height: 88px
+$challenge-input-placeholder-text: mix($black, $white, 33%)
+
+$challenge-button-height: 104px
+$challenge-button-icon-color-disabled: #ccc
+
+$challenge-button-true-background-disabled: #79efce
+$challenge-button-true-border-disabled: darken($challenge-button-true-background-disabled, 33%)
+
+$challenge-button-true-background: #55efc4
+$challenge-button-true-border: darken($challenge-button-true-background, 33%)
+$challenge-button-true-border-hover: $challenge-button-true-border
+
+$challenge-button-false-background-disabled: #f992b7
+$challenge-button-false-border-disabled: darken($challenge-button-false-background-disabled, 33%)
+
+$challenge-button-false-background: #fd79a8
+$challenge-button-false-border: darken($challenge-button-false-background, 33%)
+$challenge-button-false-border-hover: $challenge-button-false-border
+
+$challenge-button-color: $white
+
+$tooltip-color: transparentize(mix($main-color, $white, 90%), 0.1)
+
+$button-text: $black
+$button-background: transparent
+$button-background-hover: transparentize($black, 0.9)
+$button-background-active: transparentize($black, 0.75)
+
+$button-raised-text: $white
+$button-raised-background: $main-color
+$button-raised-background-active: mix($main-color, $black, 75%)
+$button-raised-shadow: 0 2px 10px transparentize($black, 0.8)
+$button-raised-shadow-hover: 0 2px 20px transparentize($black, 0.75)
+
+
+// old
+$challange-color: #7a6be8
 $newspaper-text: transparentize($black, 0.2)
 $newspaper-bg: $white
 $newspaper-header-bg: #74b9ff
@@ -12,8 +73,6 @@ $button-shadow-active: 0 0 .2em rgba(0, 0, 0, 0.2)
 
 $input-shadow: 0 0 30px rgba(0, 0, 0, 0.1)
 $input-shadow-focus: 0 0 40px rgba(0, 0, 0, 0.15)
-
-$sidebar-background: #f47e83
 
 $buttons-stripes-light: #f4c46a
 $buttons-stripes-dark: #5e686c
@@ -35,8 +94,6 @@ $button-border-2-fail: $white
 
 $info-false: $button-bg-fail
 $info-true: $button-bg-success
-
-$button-background: #fdcb6e
 
 $sidebar-header-background: #7669df
 $sidebar-divider-background: #fdcb6e

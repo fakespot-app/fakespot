@@ -4,7 +4,7 @@ import { FETCH, SUBMIT } from "actions/questions/types";
 import { questionsFetched, questionsFetchFailed, questionsSaveAnswer } from "actions/questions";
 
 import { stateSetState } from "actions/state";
-import { userCompleteQuestion, userAddPoints } from "actions/user";
+import { userCompleteQuestion } from "actions/user";
 
 const userToken = String(Math.floor(Math.random() * 10000000));
 
@@ -24,13 +24,14 @@ function* fetchQuestion() {
 }
 
 function* submitAnswers({ payload }) {
-  const { data, challange } = payload;
+  const { submittedChallange, challange } = payload;
 
   yield put(userCompleteQuestion());
-  yield put(questionsSaveAnswer(data));
 
-  if (data.isTrue === challange.isTrue) {
-    yield put(userAddPoints(100));
+  if (submittedChallange.isTrue === challange.isTrue) {
+    yield put(questionsSaveAnswer(submittedChallange, 100));
+  } else {
+    yield put(questionsSaveAnswer(submittedChallange, 0));
   }
 
   yield put(stateSetState("answer"));

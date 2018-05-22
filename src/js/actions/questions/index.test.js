@@ -38,11 +38,11 @@ describe("Questions actions creators", () => {
   });
 
   test("questionsSubmit should create an action after submittion of the question", () => {
-    const data = [];
+    const submittedChallange = {};
     const challange = {};
 
     const payload = {
-      data,
+      submittedChallange,
       challange,
     };
 
@@ -51,12 +51,16 @@ describe("Questions actions creators", () => {
       payload,
     };
 
-    expect(questionsSubmit(data, challange)).toEqual(expectedOutput);
+    expect(questionsSubmit(submittedChallange, challange)).toEqual(expectedOutput);
   });
 
   test("questionsSaveAnswer should create an action to save the question", () => {
+    const submittedChallange = {};
+    const points = 100;
+
     const payload = {
-      data: [],
+      submittedChallange,
+      points,
     };
 
     const expectedOutput = {
@@ -64,6 +68,6 @@ describe("Questions actions creators", () => {
       payload,
     };
 
-    expect(questionsSaveAnswer(payload)).toEqual(expectedOutput);
+    expect(questionsSaveAnswer(submittedChallange, points)).toEqual(expectedOutput);
   });
 });

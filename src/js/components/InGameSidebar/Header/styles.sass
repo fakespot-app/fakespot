@@ -1,0 +1,39 @@
+.header
+  padding: 0 32px
+  border-bottom: 1px solid $sidebar-border-color
+
+.progressBar
+  height: 8px
+  margin: 0 -32px 16px
+  margin-bottom: 16px
+  background: $sidebar-background-lighter
+  box-shadow: 0 0 30px transparentize($white, .75)
+
+  .progressValue
+    position: relative
+    width: 50%
+    height: 100%
+    transition: width .5s ease-in-out
+    background: $ingame-sidebar-label-color
+
+    &::after
+      display: block
+      position: absolute
+      top: 0
+      right: 0
+      transform: translateX(100%)
+      border-bottom: 8px solid transparent
+      border-left: 8px solid $ingame-sidebar-label-color
+      content: ""
+
+.progressLabel
+  margin-bottom: 48px
+
+.progress
+  margin-bottom: 48px
+  text-align: center
+  word-spacing: 0.66ch
+
+.progressPoints
+  font-size: 2.75em
+  font-weight: 300

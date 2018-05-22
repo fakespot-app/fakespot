@@ -15,7 +15,7 @@ function* completeQuestion() {
 
   const data = yield select(state => state.user.get("data"));
 
-  if (data.get("questionsCompleted") >= 5 && data.get("badgesCollected").toArray().indexOf(1) < 0) {
+  if (data.get("questionsCompleted") >= 5 && data.get("achivementsCollected").toArray().indexOf(1) < 0) {
     yield put(userGiveBadge(1));
 
     requestPermission()

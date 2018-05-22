@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { stateSetState } from "actions/state";
 
-import SplashScreenButton from "components/SplashScreenButton/";
+import Button from "components/Button";
 
 class Splash extends React.Component {
   static propTypes = {
@@ -17,8 +17,13 @@ class Splash extends React.Component {
 
   render() {
     return (
-      <div className="flex items-center justify-center h-full">
-        <SplashScreenButton onClick={this.onClick} />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Button
+          onClick={this.onClick}
+          raised
+          style={{ fontSize: "3em" }}
+        >Zaczynamy!
+        </Button>
       </div>
     );
   }

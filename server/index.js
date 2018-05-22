@@ -73,8 +73,21 @@ server.get("/api/question/:userToken", async (req, res) => {
 server.get("/api/users/me", async (req, res) => {
   res.jsonp({
     username: "Andrzej",
-    badgesCollected: [
-      0,
+    achivementsCollected: [
+      {
+        achivementId: 0,
+        title: "Czarne jest białe",
+        description: "Rozwiąż fakenewsa o tematyce politycznej",
+        src: "/badges/1.png",
+        collected: 1526767200000,
+      },
+      {
+        achivementId: 1,
+        title: "Piłka jest jedna, a bramki są dwie",
+        description: "Rozwiąż fakenewsa o tematyce sportowej",
+        src: "/badges/2.png",
+        collected: 1526767000000,
+      },
     ],
     points: 0,
     avatar: "/avatar.gif",
