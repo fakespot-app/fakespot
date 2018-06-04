@@ -22,7 +22,7 @@ class Splash extends React.Component {
           onClick={this.onClick}
           raised
           style={{ fontSize: "3em" }}
-        >Zaczynamy!
+        >Zaczynamy?
         </Button>
       </div>
     );
